@@ -18,7 +18,13 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public void modify(String dni, User user) {
-        userLocalFileDataSource.delete(dni);
-        userLocalFileDataSource.save(user);
+        User usuario = userLocalFileDataSource.findById(dni);
+        if(usuario != null){
+            userLocalFileDataSource.delete(dni);
+            userLocalFileDataSource.save(user);
+        }
+        else{
+            System.out.println("No existe el usuario");
+        }
     }
 }
