@@ -10,4 +10,9 @@ public class UserDataRepository implements UserRepository {
     public void save(User user) {
         userLocalFileDataSource.save(user);
     }
+
+    @Override
+    public void delete(String dni) {
+        userLocalFileDataSource.delete(dni);
+    }
 }
