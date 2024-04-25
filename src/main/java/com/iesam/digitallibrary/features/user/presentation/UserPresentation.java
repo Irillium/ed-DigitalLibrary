@@ -1,11 +1,9 @@
 package com.iesam.digitallibrary.features.user.presentation;
 
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
-import com.iesam.digitallibrary.features.user.domain.DeleteUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.ModifyUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.SaveUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.User;
+import com.iesam.digitallibrary.features.user.domain.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
@@ -18,6 +16,7 @@ public class UserPresentation {
             System.out.println("\t [1] Registrar Usuario");
             System.out.println("\t [2] Modificar Usuario");
             System.out.println("\t [3] Eliminal Usuario");
+            System.out.println("\t [4] Obtener Listado de usuarios existentes");
             System.out.println("\t [0] Salir");
             System.out.println("-------------------------");
             select = scan.nextInt();
@@ -34,6 +33,10 @@ public class UserPresentation {
                 case 3:
                     delete();
                     System.out.println("Usuario eliminado");
+                    break;
+                case 4:
+                    System.out.println("  LISTADO DE USUARIOS REGISTRADOS\n");
+                    obtains();
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -82,5 +85,16 @@ public class UserPresentation {
         User userModify = new User(dni,name,surnames,email,phone,birthDate);
         ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository());
         modifyUserUseCase.execute(dni,userModify);
+    }
+    public static void obtains(){
+        GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository());
+        ArrayList<User> listaUsuarios = getUsersUseCase.execute();
+        int indice=0;
+        for(User user: listaUsuarios){
+            indice++;
+            System.out.println("\tDNI\tNOMBRE\tAPELLIDOS\tCORREO\tTELEFONO\tF. NACIMIENTO");
+            System.out.println(indice + "\t"+user.getDni()+"\t"+user.getName()+"\t"+user.getSurnames()+"\t"+user.getEmail()+"\t"+user.getPhone()+"\t"+user.getBirthDate());
+        }
+
     }
 }

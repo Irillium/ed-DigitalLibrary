@@ -4,6 +4,8 @@ import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource
 import com.iesam.digitallibrary.features.user.domain.User;
 import com.iesam.digitallibrary.features.user.domain.UserRepository;
 
+import java.util.ArrayList;
+
 public class UserDataRepository implements UserRepository {
     UserFileLocalDataSource userLocalFileDataSource = new UserFileLocalDataSource();
     @Override
@@ -26,5 +28,10 @@ public class UserDataRepository implements UserRepository {
         else{
             System.out.println("No existe el usuario");
         }
+    }
+
+    @Override
+    public ArrayList<User> obtains() {
+        return (ArrayList<User>) userLocalFileDataSource.findAll();
     }
 }
