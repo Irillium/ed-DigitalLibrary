@@ -13,6 +13,8 @@ public class UserPresentation {
 
         while(select!=0){
             System.out.println("-------------------------");
+            System.out.println("-----MENÚ DE USUARIO-----");
+            System.out.println("-------------------------");
             System.out.println("\t [1] Registrar Usuario");
             System.out.println("\t [2] Modificar Usuario");
             System.out.println("\t [3] Eliminal Usuario");
@@ -89,12 +91,21 @@ public class UserPresentation {
     public static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository());
         ArrayList<User> listaUsuarios = getUsersUseCase.execute();
-        int indice=0;
-        for(User user: listaUsuarios){
+        int indice = 0;
+        System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
+        for (User user : listaUsuarios) {
             indice++;
-            System.out.println("\tDNI\tNOMBRE\tAPELLIDOS\tCORREO\tTELEFONO\tF. NACIMIENTO");
-            System.out.println(indice + "\t"+user.getDni()+"\t"+user.getName()+"\t"+user.getSurnames()+"\t"+user.getEmail()+"\t"+user.getPhone()+"\t"+user.getBirthDate());
+            System.out.printf("%-5d %-15s %-10s %-20s %-20s %-15s %-10s\n", indice,
+                    (user.getDni() != null ? user.getDni() : " "),
+                    (user.getName() != null ? user.getName() : " "),
+                    (user.getSurnames() != null ? user.getSurnames() : " "),
+                    (user.getEmail() != null ? user.getEmail() : " "),
+                    (user.getPhone() != null ? user.getPhone() : " "),
+                    (user.getBirthDate() != null ? user.getBirthDate() : ""));
         }
-
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
     }
 }
