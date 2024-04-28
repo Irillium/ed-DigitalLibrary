@@ -1,6 +1,7 @@
 package com.iesam.digitallibrary.features.user.presentation;
 
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
+import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.features.user.domain.*;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class UserPresentation {
         }
     }
     public static void save(){
-        SaveUserUseCase saveUserUseCase = new SaveUserUseCase(new UserDataRepository());
+        SaveUserUseCase saveUserUseCase = new SaveUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduzca su dni");
         String dni= scan.nextLine();
@@ -64,7 +65,7 @@ public class UserPresentation {
         saveUserUseCase.execute(user);
     }
     public static void delete(){
-        DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository());
+        DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres eliminar");
         String dni = scan.nextLine();
@@ -85,11 +86,11 @@ public class UserPresentation {
         System.out.println("Intruduce la nueva fecha de nacimiento(o el que ya tenia)");
         String birthDate = scan.nextLine();
         User userModify = new User(dni,name,surnames,email,phone,birthDate);
-        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository());
+        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         modifyUserUseCase.execute(dni,userModify);
     }
     public static void obtains(){
-        GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository());
+        GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         ArrayList<User> listaUsuarios = getUsersUseCase.execute();
         int indice = 0;
         System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");

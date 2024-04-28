@@ -1,7 +1,8 @@
-package com.iesam.digitallibrary.features.user.data.local;
+package com.iesam.digitallibrary.features.digitalBook.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
 import com.iesam.digitallibrary.features.user.domain.User;
 
 import java.io.File;
@@ -14,26 +15,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class UserFileLocalDataSource implements UserData {
+public class DigitalBookFileLocalDataSource implements DigitalBookData {
 
-    private String nameFile = "user.txt";
+    private String nameFile = "book.txt";
 
     private Gson gson = new Gson();
 
     private final Type typeList = new TypeToken<ArrayList<User>>() {
     }.getType();
 
-    public void save(User model) {
-        List<User> models = findAll();
+    public void save(DigitalBook model) {
+        List<DigitalBook> models = findAll();
         models.add(model);
         saveToFile(models);
     }
 
-    public void saveList(List<User> models) {
+    public void saveList(List<DigitalBook> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<User> models) {
+    private void saveToFile(List<DigitalBook> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,17 +46,17 @@ public class UserFileLocalDataSource implements UserData {
         }
     }
 
-    public User findById(String id) {
-        List<User> models = findAll();
-        for (User model : models) {
-            if (Objects.equals(model.getDni(), id)) {
+    public DigitalBook findById(String id) {
+        List<DigitalBook> models = findAll();
+        for (DigitalBook model : models) {
+            if (Objects.equals(model.getIdbn(), id)) {
                 return model;
             }
         }
         return null;
     }
 
-    public List<User> findAll() {
+    public List<DigitalBook> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -79,10 +80,10 @@ public class UserFileLocalDataSource implements UserData {
     }
 
     public void delete(String modelId) {
-        List<User> newList = new ArrayList<>();
-        List<User> models = findAll();
-        for (User model : models) {
-            if (!model.getDni().equals(modelId)) {
+        List<DigitalBook> newList = new ArrayList<>();
+        List<DigitalBook> models = findAll();
+        for (DigitalBook model : models) {
+            if (!model.getIdbn().equals(modelId)) {
                 newList.add(model);
             }
         }
