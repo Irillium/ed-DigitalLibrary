@@ -1,7 +1,6 @@
 package com.iesam.digitallibrary.features.digitalBook.data.local;
 
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
-import com.iesam.digitallibrary.features.user.domain.User;
 
 import java.util.List;
 
