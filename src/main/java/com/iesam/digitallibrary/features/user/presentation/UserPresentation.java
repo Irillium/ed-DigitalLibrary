@@ -2,6 +2,7 @@ package com.iesam.digitallibrary.features.user.presentation;
 
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
 import com.iesam.digitallibrary.features.user.domain.DeleteUserUseCase;
+import com.iesam.digitallibrary.features.user.domain.ModifyUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.SaveUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.User;
 
@@ -26,8 +27,13 @@ public class UserPresentation {
                 case 1:
                     save();
                     break;
+                case 2:
+                    modify();
+                    System.out.println("Usuario modificado");
+                    break;
                 case 3:
                     delete();
+                    System.out.println("Usuario eliminado");
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -51,7 +57,6 @@ public class UserPresentation {
         String birthDate= scan.nextLine();
         User user = new User(dni,name,surnames,email,phone,birthDate);
         saveUserUseCase.execute(user);
-        System.out.println();
     }
     public static void delete(){
         DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository());
@@ -59,5 +64,23 @@ public class UserPresentation {
         System.out.println("Introduce el dni del usuario que quieres eliminar");
         String dni = scan.nextLine();
         deleteUserUseCase.execute(dni);
+    }
+    public static void modify(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Introduce el dni del usuario que quieres modificar");
+        String dni = scan.nextLine();
+        System.out.println("Intruduce el nuevo nombre(o el que ya tenia)");
+        String name = scan.nextLine();
+        System.out.println("Introduce los nuevos apellidos(o el que ya tenia)");
+        String surnames = scan.nextLine();
+        System.out.println("Intruduce el nuevo correo(o el que ya tenia)");
+        String email = scan.nextLine();
+        System.out.println("Intruduce el nuevo telefono(o el que ya tenia)");
+        String phone = scan.nextLine();
+        System.out.println("Intruduce la nueva fecha de nacimiento(o el que ya tenia)");
+        String birthDate = scan.nextLine();
+        User userModify = new User(dni,name,surnames,email,phone,birthDate);
+        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository());
+        modifyUserUseCase.execute(dni,userModify);
     }
 }
