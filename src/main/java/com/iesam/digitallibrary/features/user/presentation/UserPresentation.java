@@ -1,6 +1,7 @@
 package com.iesam.digitallibrary.features.user.presentation;
 
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
+import com.iesam.digitallibrary.features.user.domain.DeleteUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.SaveUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.User;
 
@@ -20,8 +21,13 @@ public class UserPresentation {
             System.out.println("-------------------------");
             select = scan.nextInt();
             switch (select){
+                case 0:
+                    break;
                 case 1:
                     save();
+                    break;
+                case 3:
+                    delete();
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -45,5 +51,13 @@ public class UserPresentation {
         String birthDate= scan.nextLine();
         User user = new User(dni,name,surnames,email,phone,birthDate);
         saveUserUseCase.execute(user);
+        System.out.println();
+    }
+    public static void delete(){
+        DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository());
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Introduce el dni del usuario que quieres eliminar");
+        String dni = scan.nextLine();
+        deleteUserUseCase.execute(dni);
     }
 }
