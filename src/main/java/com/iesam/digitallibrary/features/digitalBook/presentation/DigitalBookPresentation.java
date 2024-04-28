@@ -4,6 +4,7 @@ import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataReposit
 import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
 import com.iesam.digitallibrary.features.digitalBook.domain.DeleteDigitalBookUseCase;
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
+import com.iesam.digitallibrary.features.digitalBook.domain.ModifyDigitalBookUseCase;
 import com.iesam.digitallibrary.features.digitalBook.domain.SaveDigitalBookUseCase;
 
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class DigitalBookPresentation {
             System.out.println("------------------------------------");
             System.out.println("\t [1] Registrar un libro digital.");
             System.out.println("\t [2] Eliminar un libro digital.");
+            System.out.println("\t [3] Modificar un libro digital.");
             System.out.println("\t [0] Salir");
             System.out.println("------------------------------------");
 
@@ -30,7 +32,11 @@ public class DigitalBookPresentation {
                     break;
                 case 2:
                     delete();
-                    System.out.println("Libro eliminado");
+                    System.out.println("LIBRO ELIMINADO");
+                    break;
+                case 3:
+                    modify();
+                    System.out.println("LIBRO MODIFICADO");
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -68,5 +74,28 @@ public class DigitalBookPresentation {
 
         DeleteDigitalBookUseCase deleteDigitalBookUseCase = new DeleteDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         deleteDigitalBookUseCase.execute(idbn);
+    }
+    private  static void modify(){
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Introduce el idbn del libro digital que desea modificar");
+        String idbn = scan.nextLine();
+        System.out.println("Introduce el nuevo titulo");
+        String title = scan.nextLine();
+        System.out.println("Introduce el nuevo autor");
+        String author = scan.nextLine();
+        System.out.println("Introduce la nueva editorial");
+        String publisher = scan.nextLine();
+        System.out.println("Introduce el/los nuevo/s genero/s");
+        String genre = scan.nextLine();
+        System.out.println("Introduce la nuevo sinopsis");
+        String synopsis = scan.nextLine();
+        System.out.println("Introduce el nuevo número de páginas que tiene");
+        String pageCount = scan.nextLine();
+
+        DigitalBook book = new DigitalBook(idbn,title,author,publisher,genre,synopsis,pageCount);
+        ModifyDigitalBookUseCase modifyDigitalBookUseCase = new ModifyDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
+        modifyDigitalBookUseCase.execute(idbn,book);
+
     }
 }

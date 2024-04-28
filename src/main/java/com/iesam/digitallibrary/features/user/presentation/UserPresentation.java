@@ -31,11 +31,11 @@ public class UserPresentation {
                     break;
                 case 2:
                     modify();
-                    System.out.println("Usuario modificado");
+                    System.out.println("USUARIO MODIFICADO");
                     break;
                 case 3:
                     delete();
-                    System.out.println("Usuario eliminado");
+                    System.out.println("USUARIO ELIMINADO");
                     break;
                 case 4:
                     System.out.println("  LISTADO DE USUARIOS REGISTRADOS\n");

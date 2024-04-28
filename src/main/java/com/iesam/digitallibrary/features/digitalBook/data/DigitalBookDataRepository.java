@@ -20,4 +20,15 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
     public void delete(String isbn) {
         digitalBookData.delete(isbn);
     }
+
+    @Override
+    public void modify(String isbn, DigitalBook book) {
+        if(digitalBookData.findById(isbn)!=null){
+            digitalBookData.delete(isbn);
+            digitalBookData.save(book);
+        }
+        else{
+            System.out.println("El libro que quieres elimianar no existe");
+        }
+    }
 }
