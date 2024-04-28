@@ -2,11 +2,9 @@ package com.iesam.digitallibrary.features.digitalBook.presentation;
 
 import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataRepository;
 import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
-import com.iesam.digitallibrary.features.digitalBook.domain.DeleteDigitalBookUseCase;
-import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
-import com.iesam.digitallibrary.features.digitalBook.domain.ModifyDigitalBookUseCase;
-import com.iesam.digitallibrary.features.digitalBook.domain.SaveDigitalBookUseCase;
+import com.iesam.digitallibrary.features.digitalBook.domain.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DigitalBookPresentation {
@@ -20,6 +18,7 @@ public class DigitalBookPresentation {
             System.out.println("\t [1] Registrar un libro digital.");
             System.out.println("\t [2] Eliminar un libro digital.");
             System.out.println("\t [3] Modificar un libro digital.");
+            System.out.println("\t [4] Ver lista.");
             System.out.println("\t [0] Salir");
             System.out.println("------------------------------------");
 
@@ -37,6 +36,9 @@ public class DigitalBookPresentation {
                 case 3:
                     modify();
                     System.out.println("LIBRO MODIFICADO");
+                    break;
+                case 4:
+                    obtains();
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -97,5 +99,27 @@ public class DigitalBookPresentation {
         ModifyDigitalBookUseCase modifyDigitalBookUseCase = new ModifyDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         modifyDigitalBookUseCase.execute(idbn,book);
 
+    }
+    public static void obtains(){
+        GetDigitalBooksUseCase getDigitalBooksUseCase=new GetDigitalBooksUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
+        ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
+        int indice = 0;
+        System.out.println("\tLISTA DE LIBROS DIGITALES REGISTRADOS\n");
+        System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s\n", " ","ISBN", "TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PAGINAS");
+        for ( DigitalBook book : bookList) {
+            indice++;
+            System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
+                    (book.getIdbn() != null ? book.getIdbn() : " "),
+                    (book.getTitle() != null ? book.getTitle(): " "),
+                    (book.getAuthor() != null ? book.getAuthor() : " "),
+                    (book.getPublisher() != null ? book.getPublisher() : " "),
+                    (book.getGenre() != null ? book.getGenre() : " "),
+                    (book.getSynopsis() != null ? book.getSynopsis() : ""),
+                    (book.getPageCount() != null ? book.getPageCount() : ""));
+        }
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
     }
 }

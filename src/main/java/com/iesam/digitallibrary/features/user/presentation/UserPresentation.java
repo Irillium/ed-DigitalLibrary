@@ -91,10 +91,10 @@ public class UserPresentation {
     }
     public static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        ArrayList<User> listaUsuarios = getUsersUseCase.execute();
+        ArrayList<User> userList = getUsersUseCase.execute();
         int indice = 0;
         System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
-        for (User user : listaUsuarios) {
+        for (User user : userList) {
             indice++;
             System.out.printf("%-5d %-15s %-10s %-20s %-20s %-15s %-10s\n", indice,
                     (user.getDni() != null ? user.getDni() : " "),
