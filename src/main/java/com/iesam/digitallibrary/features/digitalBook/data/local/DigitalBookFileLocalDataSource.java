@@ -3,7 +3,6 @@ package com.iesam.digitallibrary.features.digitalBook.data.local;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
-import com.iesam.digitallibrary.features.user.domain.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +20,7 @@ public class DigitalBookFileLocalDataSource implements DigitalBookData {
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<User>>() {
+    private final Type typeList = new TypeToken<ArrayList<DigitalBook>>() {
     }.getType();
 
     public void save(DigitalBook model) {

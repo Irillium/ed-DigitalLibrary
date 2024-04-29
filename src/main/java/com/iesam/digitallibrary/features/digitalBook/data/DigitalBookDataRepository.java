@@ -15,4 +15,9 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
     public void save(DigitalBook digitalBook) {
         digitalBookData.save(digitalBook);
     }
+
+    @Override
+    public void delete(String isbn) {
+        digitalBookData.delete(isbn);
+    }
 }
