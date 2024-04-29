@@ -31,11 +31,11 @@ public class UserPresentation {
                     break;
                 case 2:
                     modify();
-                    System.out.println("Usuario modificado");
+                    System.out.println("USUARIO MODIFICADO");
                     break;
                 case 3:
                     delete();
-                    System.out.println("Usuario eliminado");
+                    System.out.println("USUARIO ELIMINADO");
                     break;
                 case 4:
                     System.out.println("  LISTADO DE USUARIOS REGISTRADOS\n");
@@ -91,10 +91,10 @@ public class UserPresentation {
     }
     public static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
-        ArrayList<User> listaUsuarios = getUsersUseCase.execute();
+        ArrayList<User> userList = getUsersUseCase.execute();
         int indice = 0;
         System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
-        for (User user : listaUsuarios) {
+        for (User user : userList) {
             indice++;
             System.out.printf("%-5d %-15s %-10s %-20s %-20s %-15s %-10s\n", indice,
                     (user.getDni() != null ? user.getDni() : " "),
