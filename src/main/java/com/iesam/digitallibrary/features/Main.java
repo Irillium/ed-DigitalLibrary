@@ -9,8 +9,11 @@ public class Main {
        Scanner scan = new Scanner(System.in);
        int select=-1;
        System.out.println("¡Hola! Bienvenido a Ditilal Library");
-       System.out.println("¿Qué desea hacer?");
+       System.out.println("¿Qué desea hacer?\n");
        while (select!=0){
+           System.out.println("-------------------------");
+           System.out.println("------MENÚ PRINCIPAL-----");
+           System.out.println("-------------------------");
            System.out.println("\t[0] Salir");
            System.out.println("\t[1] Menú Usuario");
            System.out.println("-------------------------");

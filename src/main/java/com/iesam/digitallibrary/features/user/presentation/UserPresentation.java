@@ -1,11 +1,9 @@
 package com.iesam.digitallibrary.features.user.presentation;
 
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
-import com.iesam.digitallibrary.features.user.domain.DeleteUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.ModifyUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.SaveUserUseCase;
-import com.iesam.digitallibrary.features.user.domain.User;
+import com.iesam.digitallibrary.features.user.domain.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
@@ -15,9 +13,12 @@ public class UserPresentation {
 
         while(select!=0){
             System.out.println("-------------------------");
+            System.out.println("-----MENÚ DE USUARIO-----");
+            System.out.println("-------------------------");
             System.out.println("\t [1] Registrar Usuario");
             System.out.println("\t [2] Modificar Usuario");
             System.out.println("\t [3] Eliminal Usuario");
+            System.out.println("\t [4] Obtener Listado de usuarios existentes");
             System.out.println("\t [0] Salir");
             System.out.println("-------------------------");
             select = scan.nextInt();
@@ -34,6 +35,10 @@ public class UserPresentation {
                 case 3:
                     delete();
                     System.out.println("Usuario eliminado");
+                    break;
+                case 4:
+                    System.out.println("  LISTADO DE USUARIOS REGISTRADOS\n");
+                    obtains();
                     break;
                 default:
                     System.out.println("Lo sentimos pero esa opción no existe");
@@ -82,5 +87,25 @@ public class UserPresentation {
         User userModify = new User(dni,name,surnames,email,phone,birthDate);
         ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository());
         modifyUserUseCase.execute(dni,userModify);
+    }
+    public static void obtains(){
+        GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository());
+        ArrayList<User> listaUsuarios = getUsersUseCase.execute();
+        int indice = 0;
+        System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
+        for (User user : listaUsuarios) {
+            indice++;
+            System.out.printf("%-5d %-15s %-10s %-20s %-20s %-15s %-10s\n", indice,
+                    (user.getDni() != null ? user.getDni() : " "),
+                    (user.getName() != null ? user.getName() : " "),
+                    (user.getSurnames() != null ? user.getSurnames() : " "),
+                    (user.getEmail() != null ? user.getEmail() : " "),
+                    (user.getPhone() != null ? user.getPhone() : " "),
+                    (user.getBirthDate() != null ? user.getBirthDate() : ""));
+        }
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
     }
 }
