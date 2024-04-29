@@ -1,13 +1,13 @@
-package com.iesam.digitallibrary.features.digitalBook.data.local;
+package com.iesam.digitallibrary.features.loan.data.local;
 
 
-import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
+import com.iesam.digitallibrary.features.loan.domain.Loan;
 
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class DigitalBookMemLocalDataSource implements DigitalBookData {
+public class DigitalBookMemLocalDataSource implements LoanBookData {
 
     private static DigitalBookMemLocalDataSource digitalBookMemLocalDataSource=null;
     public static DigitalBookMemLocalDataSource newInstance(){
@@ -16,23 +16,23 @@ public class DigitalBookMemLocalDataSource implements DigitalBookData {
         }
         return digitalBookMemLocalDataSource;
     }
-    private Map<String, DigitalBook> dataStore = new TreeMap<>();
+    private Map<String, Loan> dataStore = new TreeMap<>();
 
-    public void save(DigitalBook model) {
-        dataStore.put(model.getIsbn(), model);
+    public void save(Loan model) {
+        dataStore.put(model.getId(), model);
     }
 
-    public void saveList(List<DigitalBook> models) {
-        for (DigitalBook demo : models) {
+    public void saveList(List<Loan> models) {
+        for (Loan demo : models) {
             save(demo);
         }
     }
 
-    public DigitalBook findById(String id) {
+    public Loan findById(String id) {
         return dataStore.get(id);
     }
 
-    public List<DigitalBook> findAll() {
+    public List<Loan> findAll() {
         return dataStore.values().stream().toList();
     }
 

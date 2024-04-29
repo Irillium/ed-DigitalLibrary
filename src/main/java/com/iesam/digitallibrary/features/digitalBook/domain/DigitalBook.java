@@ -1,7 +1,7 @@
 package com.iesam.digitallibrary.features.digitalBook.domain;
 
 public class DigitalBook {
-    public final String idbn;
+    public final String isbn;
     public final String title;
     public final String author;
     public final String publisher;
@@ -9,8 +9,8 @@ public class DigitalBook {
     public final String synopsis;
     public final String pageCount;
 
-    public DigitalBook(String idbn, String title, String author, String publisher, String genre, String synopsis, String pageCount) {
-        this.idbn = idbn;
+    public DigitalBook(String isbn, String title, String author, String publisher, String genre, String synopsis, String pageCount) {
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -19,8 +19,8 @@ public class DigitalBook {
         this.pageCount = pageCount;
     }
 
-    public String getIdbn() {
-        return idbn;
+    public String getIsbn() {
+        return isbn;
     }
 
     public String getTitle() {
