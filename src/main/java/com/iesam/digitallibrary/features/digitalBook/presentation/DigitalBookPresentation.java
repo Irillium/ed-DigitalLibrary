@@ -19,6 +19,7 @@ public class DigitalBookPresentation {
             System.out.println("\t [2] Eliminar un libro digital.");
             System.out.println("\t [3] Modificar un libro digital.");
             System.out.println("\t [4] Ver lista.");
+
             System.out.println("\t [0] Salir");
             System.out.println("------------------------------------");
 
@@ -122,4 +123,5 @@ public class DigitalBookPresentation {
         String c = scan.next();
         System.out.println();
     }
+
 }
