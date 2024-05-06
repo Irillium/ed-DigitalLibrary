@@ -4,6 +4,8 @@ import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookData;
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBookRepository;
 
+import java.util.ArrayList;
+
 public class DigitalBookDataRepository implements DigitalBookRepository {
     private DigitalBookData digitalBookData;
 
@@ -31,4 +33,10 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
             System.out.println("El libro que quieres elimianar no existe");
         }
     }
+  
+    @Override
+    public ArrayList<DigitalBook> obtains() {
+        return (ArrayList<DigitalBook>) digitalBookData.findAll();
+    }
+
 }
