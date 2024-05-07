@@ -1,6 +1,5 @@
 package com.iesam.digitallibrary.features.digitalBook.domain;
 
-
 import java.util.ArrayList;
 
 public interface DigitalBookRepository {
@@ -8,4 +7,5 @@ public interface DigitalBookRepository {
     void delete(String isbn);
     void modify(String isbn, DigitalBook book);
     ArrayList<DigitalBook> obtains();
+
 }

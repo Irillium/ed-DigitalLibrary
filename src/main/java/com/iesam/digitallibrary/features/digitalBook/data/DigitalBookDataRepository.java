@@ -33,7 +33,6 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
             System.out.println("El libro que quieres elimianar no existe");
         }
     }
-
     @Override
     public ArrayList<DigitalBook> obtains() {
         return (ArrayList<DigitalBook>) digitalBookData.findAll();

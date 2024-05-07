@@ -109,6 +109,7 @@ public class DigitalBookPresentation {
         for ( DigitalBook book : bookList) {
             indice++;
             System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
+
                     (book.getIsbn() != null ? book.getIsbn() : " "),
                     (book.getTitle() != null ? book.getTitle(): " "),
                     (book.getAuthor() != null ? book.getAuthor() : " "),
