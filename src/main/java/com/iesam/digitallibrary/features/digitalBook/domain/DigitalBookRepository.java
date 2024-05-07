@@ -7,5 +7,6 @@ public interface DigitalBookRepository {
     void delete(String isbn);
     void modify(String isbn, DigitalBook book);
     ArrayList<DigitalBook> obtains();
+    DigitalBook obtain(String isbn);
 
 }
