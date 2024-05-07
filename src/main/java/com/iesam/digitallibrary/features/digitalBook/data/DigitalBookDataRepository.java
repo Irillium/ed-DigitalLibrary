@@ -38,4 +38,5 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
     public ArrayList<DigitalBook> obtains() {
         return (ArrayList<DigitalBook>) digitalBookData.findAll();
     }
+
 }
