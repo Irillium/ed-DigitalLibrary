@@ -50,7 +50,7 @@ public class DigitalBookPresentation {
     private static void save() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Introduce el idbn del libro digital");
+        System.out.println("Introduce el isbn del libro digital");
         String idbn = scan.nextLine();
         System.out.println("Introduce el titulo");
         String title = scan.nextLine();
@@ -71,7 +71,7 @@ public class DigitalBookPresentation {
     }
     private static void delete() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Introduce el idbn del libro digital que desea eliminar");
+        System.out.println("Introduce el isbn del libro digital que desea eliminar");
         String idbn = scan.nextLine();
 
         DeleteDigitalBookUseCase deleteDigitalBookUseCase = new DeleteDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
@@ -80,7 +80,7 @@ public class DigitalBookPresentation {
     private  static void modify(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Introduce el idbn del libro digital que desea modificar");
+        System.out.println("Introduce el isbn del libro digital que desea modificar");
         String idbn = scan.nextLine();
         System.out.println("Introduce el nuevo titulo");
         String title = scan.nextLine();
@@ -88,7 +88,7 @@ public class DigitalBookPresentation {
         String author = scan.nextLine();
         System.out.println("Introduce la nueva editorial");
         String publisher = scan.nextLine();
-        System.out.println("Introduce el/los nuevo/s genero/s");
+        System.out.println("Introduce el/los nuevo/s género/s");
         String genre = scan.nextLine();
         System.out.println("Introduce la nuevo sinopsis");
         String synopsis = scan.nextLine();
@@ -105,7 +105,7 @@ public class DigitalBookPresentation {
         ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
         int indice = 0;
         System.out.println("\tLISTA DE LIBROS DIGITALES REGISTRADOS\n");
-        System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s\n", " ","ISBN", "TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PAGINAS");
+        System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s\n", " ","ISBN", "TÍTULO", "AUTOR", "EDITORIAL", "GÉNERO", "SINOPSIS","Nº PÁGINAS");
         for ( DigitalBook book : bookList) {
             indice++;
             System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
