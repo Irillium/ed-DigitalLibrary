@@ -30,11 +30,16 @@ public class DigitalBookDataRepository implements DigitalBookRepository {
             digitalBookData.save(book);
         }
         else{
-            System.out.println("El libro que quieres elimianar no existe");
+            System.out.println("El libro que quieres modificar no existe");
         }
     }
     @Override
     public ArrayList<DigitalBook> obtains() {
         return (ArrayList<DigitalBook>) digitalBookData.findAll();
+    }
+
+    @Override
+    public DigitalBook obtain(String isbn) {
+        return digitalBookData.findById(isbn);
     }
 }

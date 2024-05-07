@@ -1,7 +1,9 @@
 package com.iesam.digitallibrary.features.loan.presentation;
 
+import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataRepository;
 import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
 import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
+import com.iesam.digitallibrary.features.digitalBook.domain.GetDigitalBookUseCase;
 import com.iesam.digitallibrary.features.loan.data.LoanDataRepository;
 import com.iesam.digitallibrary.features.loan.data.local.LoanFileLocalDataSource;
 import com.iesam.digitallibrary.features.loan.domain.CreateLoanUserCase;
@@ -62,13 +64,13 @@ public class LoanPresentation {
         }
         System.out.println("Introduce el código del recurso digital(isbn)");
         String isbn=scan.nextLine();
-        DigitalBookFileLocalDataSource digitalBookFileLocalDataSource = new DigitalBookFileLocalDataSource();
-        DigitalBook digitalBook= digitalBookFileLocalDataSource.findById(isbn);
+        GetDigitalBookUseCase getDigitalBookUseCase= new GetDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
+        DigitalBook digitalBook= getDigitalBookUseCase.execute(isbn);
         if(digitalBook==null){
             while(true){
                 System.out.println("El libro no existe, introduzca otro codigo");
                 isbn=scan.nextLine();
-                digitalBook = digitalBookFileLocalDataSource.findById(isbn);
+                digitalBook= getDigitalBookUseCase.execute(isbn);
                 if(digitalBook!=null){
                     System.out.println("Ese si existe");
                     break;
