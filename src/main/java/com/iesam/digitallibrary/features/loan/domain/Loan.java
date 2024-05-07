@@ -9,14 +9,26 @@ public class Loan {
     public final DigitalBook digitalBook;
     public final String loanDate;
     public final String deadline;
-    public final String returnDate;
+    private String returnDate;
 
+    public Loan(String id, User user, DigitalBook digitalBook, String loanDate, String deadline) {
+        this.id = id;
+        this.user = user;
+        this.digitalBook = digitalBook;
+        this.loanDate = loanDate;
+        this.deadline = deadline;
+        this.returnDate = null;
+    }
     public Loan(String id, User user, DigitalBook digitalBook, String loanDate, String deadline, String returnDate) {
         this.id = id;
         this.user = user;
         this.digitalBook = digitalBook;
         this.loanDate = loanDate;
         this.deadline = deadline;
+        this.returnDate = returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
