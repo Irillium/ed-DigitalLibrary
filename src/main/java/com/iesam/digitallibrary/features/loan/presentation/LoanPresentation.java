@@ -5,6 +5,7 @@ import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
 import com.iesam.digitallibrary.features.loan.data.LoanDataRepository;
 import com.iesam.digitallibrary.features.loan.data.local.LoanFileLocalDataSource;
 import com.iesam.digitallibrary.features.loan.domain.CreateLoanUserCase;
+import com.iesam.digitallibrary.features.loan.domain.DeleteLoanUseCase;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
 import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.features.user.domain.User;
@@ -20,6 +21,7 @@ public class LoanPresentation {
             Scanner scan = new Scanner(System.in);
             System.out.println("-------Menú Prestamos-------");
             System.out.println("[1] Registrar un prestamo");
+            System.out.println("[2] Eliminar un prestamo");
             System.out.println("[0] Salir");
             System.out.println("----------------------------");
             select=scan.nextInt();
@@ -29,12 +31,15 @@ public class LoanPresentation {
                 case 1:
                     save();
                     break;
+                case 2:
+                    delete();
+                    break;
                 default:
                     System.out.println("Esa opción no existe");
             }
         }
     }
-    public static void save(){
+    private static void save(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el identificador del prestamo");
         String id=scan.nextLine();
@@ -78,5 +83,12 @@ public class LoanPresentation {
         createLoanUserCase.execute(loan);
 
 
+    }
+    private static void delete(){
+        System.out.println("Introduce el id del prestamo a eliminar");
+        Scanner scan = new Scanner(System.in);
+        String id= scan.nextLine();
+        DeleteLoanUseCase deleteLoanUseCase = new DeleteLoanUseCase(loanDataRepository);
+        deleteLoanUseCase.execute(id);
     }
 }
