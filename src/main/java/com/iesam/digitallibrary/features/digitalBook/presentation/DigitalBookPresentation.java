@@ -50,7 +50,7 @@ public class DigitalBookPresentation {
     private static void save() {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Introduce el isbn del libro digital");
+       System.out.println("Introduce el isbn del libro digital");
         String idbn = scan.nextLine();
         System.out.println("Introduce el titulo");
         String title = scan.nextLine();
@@ -68,6 +68,7 @@ public class DigitalBookPresentation {
         DigitalBook book = new DigitalBook(idbn,title,author,publisher,genre,synopsis,pageCount);
         SaveDigitalBookUseCase saveDigitalBookUseCase= new SaveDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         saveDigitalBookUseCase.execute(book);
+
     }
     private static void delete() {
         Scanner scan = new Scanner(System.in);

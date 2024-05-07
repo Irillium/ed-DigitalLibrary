@@ -23,4 +23,16 @@ public class LoanDataRepository implements LoanRepository {
     public void delete(String id) {
         loanBookData.delete(id);
     }
+
+    @Override
+    public ArrayList<Loan> obtainUnfinisheds() {
+        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
+        ArrayList<Loan> loansUnfinished = new ArrayList<>();
+        for(Loan l:loans){
+            if(l.getReturnDate()==null){
+                loansUnfinished.add(l);
+            }
+        }
+        return loansUnfinished;
+    }
 }
