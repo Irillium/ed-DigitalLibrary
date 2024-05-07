@@ -19,7 +19,7 @@ public class DigitalBookMemLocalDataSource implements DigitalBookData {
     private Map<String, DigitalBook> dataStore = new TreeMap<>();
 
     public void save(DigitalBook model) {
-        dataStore.put(model.getIdbn(), model);
+        dataStore.put(model.getIsbn(), model);
     }
 
     public void saveList(List<DigitalBook> models) {

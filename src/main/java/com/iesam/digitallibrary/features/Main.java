@@ -1,6 +1,7 @@
 package com.iesam.digitallibrary.features;
 
 import com.iesam.digitallibrary.features.digitalBook.presentation.DigitalBookPresentation;
+import com.iesam.digitallibrary.features.loan.presentation.LoanPresentation;
 import com.iesam.digitallibrary.features.user.presentation.UserPresentation;
 
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Main {
            System.out.println("-------------------------------");
            System.out.println("\t [1] Menú Usuario");
            System.out.println("\t [2] Menú Recursos Digitales");
+           System.out.println("\t [3] Menú Prestamos");
            System.out.println("\t [0] Salir");
            System.out.println("-------------------------------");
            select=scan.nextInt();
@@ -28,6 +30,9 @@ public class Main {
                    break;
                case 2:
                    DigitalBookPresentation.digitalBookMenu();
+                   break;
+               case 3:
+                   LoanPresentation.loanMenu();
                    break;
                default:
            }

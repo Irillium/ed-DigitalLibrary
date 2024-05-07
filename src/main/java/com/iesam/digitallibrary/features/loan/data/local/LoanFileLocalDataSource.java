@@ -1,8 +1,8 @@
-package com.iesam.digitallibrary.features.digitalBook.data.local;
+package com.iesam.digitallibrary.features.loan.data.local;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
+import com.iesam.digitallibrary.features.loan.domain.Loan;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,26 +14,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class DigitalBookFileLocalDataSource implements DigitalBookData {
+public class LoanFileLocalDataSource implements LoanBookData {
 
-    private String nameFile = "book.txt";
+    private String nameFile = "loan.txt";
 
     private Gson gson = new Gson();
 
-    private final Type typeList = new TypeToken<ArrayList<DigitalBook>>() {
+    private final Type typeList = new TypeToken<ArrayList<Loan>>() {
     }.getType();
 
-    public void save(DigitalBook model) {
-        List<DigitalBook> models = findAll();
+    public void save(Loan model) {
+        List<Loan> models = findAll();
         models.add(model);
         saveToFile(models);
     }
 
-    public void saveList(List<DigitalBook> models) {
+    public void saveList(List<Loan> models) {
         saveToFile(models);
     }
 
-    private void saveToFile(List<DigitalBook> models) {
+    private void saveToFile(List<Loan> models) {
         try {
             FileWriter myWriter = new FileWriter(nameFile);
             myWriter.write(gson.toJson(models));
@@ -45,17 +45,17 @@ public class DigitalBookFileLocalDataSource implements DigitalBookData {
         }
     }
 
-    public DigitalBook findById(String id) {
-        List<DigitalBook> models = findAll();
-        for (DigitalBook model : models) {
-            if (Objects.equals(model.getIsbn(), id)) {
+    public Loan findById(String id) {
+        List<Loan> models = findAll();
+        for (Loan model : models) {
+            if (Objects.equals(model.getId(), id)) {
                 return model;
             }
         }
         return null;
     }
 
-    public List<DigitalBook> findAll() {
+    public List<Loan> findAll() {
         try {
             File myObj = new File(nameFile);
             if (!myObj.exists()) {
@@ -79,10 +79,10 @@ public class DigitalBookFileLocalDataSource implements DigitalBookData {
     }
 
     public void delete(String modelId) {
-        List<DigitalBook> newList = new ArrayList<>();
-        List<DigitalBook> models = findAll();
-        for (DigitalBook model : models) {
-            if (!model.getIsbn().equals(modelId)) {
+        List<Loan> newList = new ArrayList<>();
+        List<Loan> models = findAll();
+        for (Loan model : models) {
+            if (!model.getId().equals(modelId)) {
                 newList.add(model);
             }
         }
