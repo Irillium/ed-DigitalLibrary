@@ -40,4 +40,9 @@ public class UserDataRepository implements UserRepository {
     public ArrayList<User> obtains() {
         return (ArrayList<User>) userData.findAll();
     }
+
+    @Override
+    public User obtain(String dni) {
+        return userData.findById(dni);
+    }
 }

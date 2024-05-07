@@ -7,4 +7,5 @@ public interface UserRepository {
     void delete(String dni);
     void modify(String dni, User user);
     ArrayList<User> obtains();
+    User obtain(String dni);
 }

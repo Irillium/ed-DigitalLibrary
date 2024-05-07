@@ -7,7 +7,9 @@ import com.iesam.digitallibrary.features.loan.data.local.LoanFileLocalDataSource
 import com.iesam.digitallibrary.features.loan.domain.CreateLoanUserCase;
 import com.iesam.digitallibrary.features.loan.domain.DeleteLoanUseCase;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
+import com.iesam.digitallibrary.features.user.data.UserDataRepository;
 import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource;
+import com.iesam.digitallibrary.features.user.domain.GetUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.User;
 
 import java.util.Scanner;
@@ -45,13 +47,13 @@ public class LoanPresentation {
         String id=scan.nextLine();
         System.out.println("Introduce tu dni");
         String dni=scan.nextLine();
-        UserFileLocalDataSource userFileLocalDataSource = new UserFileLocalDataSource();
-        User user = userFileLocalDataSource.findById(dni);
+        GetUserUseCase getUserUseCase= new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        User user=getUserUseCase.execute(dni);
         if(user==null){
             while(true){
                 System.out.println("El usuario no existe, introduzca otro dni");
                 dni=scan.nextLine();
-                user = userFileLocalDataSource.findById(dni);
+                user=getUserUseCase.execute(dni);
                 if(user!=null){
                     System.out.println("Ese si existe");
                     break;
