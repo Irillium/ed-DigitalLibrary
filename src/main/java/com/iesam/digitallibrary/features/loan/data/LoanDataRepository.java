@@ -35,4 +35,16 @@ public class LoanDataRepository implements LoanRepository {
         }
         return loansUnfinished;
     }
+
+    @Override
+    public ArrayList<Loan> obtainCompleteds() {
+        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
+        ArrayList<Loan> loansUnfinished = new ArrayList<>();
+        for(Loan l:loans){
+            if(l.getReturnDate()!=null){
+                loansUnfinished.add(l);
+            }
+        }
+        return loansUnfinished;
+    }
 }
