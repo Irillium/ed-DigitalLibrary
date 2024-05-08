@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LoanDataRepository implements LoanRepository {
 
-    private LoanBookData loanBookData;
+    private final LoanBookData loanBookData;
     public LoanDataRepository(LoanBookData loanBookData) {
         this.loanBookData = loanBookData;
     }
@@ -34,5 +34,30 @@ public class LoanDataRepository implements LoanRepository {
             }
         }
         return loansUnfinished;
+    }
+
+    @Override
+    public ArrayList<Loan> obtainCompleteds() {
+        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
+        ArrayList<Loan> loansUnfinished = new ArrayList<>();
+        for(Loan l:loans){
+            if(l.getReturnDate()!=null){
+                loansUnfinished.add(l);
+            }
+        }
+        return loansUnfinished;
+    }
+
+    @Override
+    public void returned(String isbn, String endDate) {
+        Loan loan=loanBookData.findById(isbn);
+        if(loan==null){
+            System.out.println("El prestamo no existe");
+        }
+        else{
+            loan.setReturnDate(endDate);
+            System.out.println("Prestamo devuelto");
+        }
+
     }
 }

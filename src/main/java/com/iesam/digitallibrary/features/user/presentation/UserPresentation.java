@@ -13,15 +13,15 @@ public class UserPresentation {
         int select=-1;
 
         while(select!=0){
-            System.out.println("-------------------------");
-            System.out.println("-----MENÚ DE USUARIO-----");
-            System.out.println("-------------------------");
+            System.out.println("------------------------------------------------");
+            System.out.println("---------------MENÚ DE USUARIO------------------");
+            System.out.println("------------------------------------------------");
             System.out.println("\t [1] Registrar Usuario");
             System.out.println("\t [2] Modificar Usuario");
             System.out.println("\t [3] Eliminar Usuario");
             System.out.println("\t [4] Obtener Listado de usuarios existentes");
             System.out.println("\t [0] Salir");
-            System.out.println("-------------------------");
+            System.out.println("-----------------------------------------------");
             select = scan.nextInt();
             switch (select){
                 case 0:
@@ -38,7 +38,6 @@ public class UserPresentation {
                     System.out.println("USUARIO ELIMINADO");
                     break;
                 case 4:
-                    System.out.println("  LISTADO DE USUARIOS REGISTRADOS\n");
                     obtains();
                     break;
                 default:
@@ -46,7 +45,7 @@ public class UserPresentation {
             }
         }
     }
-    public static void save(){
+    private static void save(){
         SaveUserUseCase saveUserUseCase = new SaveUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduzca su dni");
@@ -65,14 +64,14 @@ public class UserPresentation {
         saveUserUseCase.execute(user);
 
     }
-    public static void delete(){
+    private static void delete(){
         DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres eliminar");
         String dni = scan.nextLine();
         deleteUserUseCase.execute(dni);
     }
-    public static void modify(){
+    private static void modify(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres modificar");
         String dni = scan.nextLine();
@@ -90,10 +89,13 @@ public class UserPresentation {
         ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         modifyUserUseCase.execute(dni,userModify);
     }
-    public static void obtains(){
+    private static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         ArrayList<User> userList = getUsersUseCase.execute();
         int indice = 0;
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("----------------------------------LISTADO DE USUARIOS REGISTRADOS----------------------------------");
+        System.out.println("----------------------------------------------------------------------------------------------------\n");
         System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
         for (User user : userList) {
             indice++;
@@ -105,6 +107,7 @@ public class UserPresentation {
                     (user.getPhone() != null ? user.getPhone() : " "),
                     (user.getBirthDate() != null ? user.getBirthDate() : ""));
         }
+        System.out.println("----------------------------------------------------------------------------------------------------");
         Scanner scan = new Scanner(System.in);
         System.out.println("\n--Introduce cualquier caracter para volver al menú--");
         String c = scan.next();

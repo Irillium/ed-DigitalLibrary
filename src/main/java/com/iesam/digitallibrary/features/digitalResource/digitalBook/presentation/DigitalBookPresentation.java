@@ -105,8 +105,9 @@ public class DigitalBookPresentation {
         GetDigitalBooksUseCase getDigitalBooksUseCase=new GetDigitalBooksUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
         int indice = 0;
-        System.out.println("\tLISTA DE LIBROS DIGITALES REGISTRADOS\n");
-        System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s\n", " ","ISBN", "TITULO", "AUTOR", "EDITORIAL", "GÉNERO", "SINOPSIS","Nº PAGINAS");
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------LISTA DE LIBROS DIGITALES REGISTRADOS------------------------------\n");
+        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TÍTULO", "AUTOR", "EDITORIAL", "GÉNERO", "SINOPSIS","Nº PÁGINAS");
         for ( DigitalBook book : bookList) {
             indice++;
             System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,

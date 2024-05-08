@@ -1,7 +1,7 @@
-package com.iesam.digitallibrary.features.digitalBook.domain;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.domain;
 
 public class DeleteDigitalBookUseCase {
-    DigitalBookRepository digitalBookRepository;
+    private DigitalBookRepository digitalBookRepository;
 
     public DeleteDigitalBookUseCase(DigitalBookRepository digitalBookRepository) {
         this.digitalBookRepository = digitalBookRepository;
