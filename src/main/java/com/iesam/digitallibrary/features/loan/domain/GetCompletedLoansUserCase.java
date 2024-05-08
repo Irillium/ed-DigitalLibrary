@@ -2,13 +2,13 @@ package com.iesam.digitallibrary.features.loan.domain;
 
 import java.util.ArrayList;
 
-public class GetLoansUnfinishedUseCase {
+public class GetCompletedLoansUserCase {
     private LoanRepository loanRepository;
 
-    public GetLoansUnfinishedUseCase(LoanRepository loanRepository) {
+    public GetCompletedLoansUserCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
     public ArrayList<Loan> execute(){
-        return loanRepository.obtainUnfinisheds();
+        return loanRepository.obtainCompleteds();
     }
 }

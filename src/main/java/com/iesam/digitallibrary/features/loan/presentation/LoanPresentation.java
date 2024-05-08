@@ -1,15 +1,12 @@
 package com.iesam.digitallibrary.features.loan.presentation;
 
-import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataRepository;
-import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
-import com.iesam.digitallibrary.features.digitalBook.domain.DigitalBook;
-import com.iesam.digitallibrary.features.digitalBook.domain.GetDigitalBookUseCase;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.DigitalBookDataRepository;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.local.DigitalBookFileLocalDataSource;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.domain.DigitalBook;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.domain.GetDigitalBookUseCase;
 import com.iesam.digitallibrary.features.loan.data.LoanDataRepository;
 import com.iesam.digitallibrary.features.loan.data.local.LoanFileLocalDataSource;
-import com.iesam.digitallibrary.features.loan.domain.CreateLoanUserCase;
-import com.iesam.digitallibrary.features.loan.domain.DeleteLoanUseCase;
-import com.iesam.digitallibrary.features.loan.domain.GetLoansUnfinishedUseCase;
-import com.iesam.digitallibrary.features.loan.domain.Loan;
+import com.iesam.digitallibrary.features.loan.domain.*;
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
 import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.features.user.domain.GetUserUseCase;
@@ -25,14 +22,16 @@ public class LoanPresentation {
         int select=-1;
         while(select!=0){
             Scanner scan = new Scanner(System.in);
-            System.out.println("---------------------------------------");
-            System.out.println("-------------MENÚ PRESTAMOS------------");
-            System.out.println("---------------------------------------");
+            System.out.println("-----------------------------------------------");
+            System.out.println("-----------------MENÚ PRESTAMOS----------------");
+            System.out.println("-----------------------------------------------");
             System.out.println("\t[1] Registrar un prestamo");
             System.out.println("\t[2] Eliminar un prestamo");
-            System.out.println("\t[3] Lista de prestamos no devuelstos");
+            System.out.println("\t[3] Devolver prestamo");
+            System.out.println("\t[4] Lista de prestamos no devueltos");
+            System.out.println("\t[5] Lista de prestamos finalizados");
             System.out.println("\t[0] Salir");
-            System.out.println("---------------------------------------");
+            System.out.println("-----------------------------------------------");
             select=scan.nextInt();
             switch (select){
                 case 0:
@@ -44,7 +43,13 @@ public class LoanPresentation {
                     delete();
                     break;
                 case 3:
+                    returnLoan();
+                    break;
+                case 4:
                     unfinishedList();
+                    break;
+                case 5:
+                    completedList();
                     break;
                 default:
                     System.out.println("Esa opción no existe");
@@ -115,8 +120,44 @@ public class LoanPresentation {
 
         for (Loan loan : loans) {
             System.out.printf("%-10s | %-15s | %-35s | %-20s | %-20s | %-12s\n",
-                    loan.getId(), loan.getUser().getName(), loan.getDigitalBook().getTitle(),
+                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().getTitle(),
                     loan.getLoanDate(), loan.getDeadline(), "No devuelto");
         }
+        System.out.println("-------------------------------------------------------------------------------");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
+    }
+    private static void completedList(){
+        GetCompletedLoansUserCase getCompletedLoansUserCase=new GetCompletedLoansUserCase(loanDataRepository);
+        ArrayList<Loan> loans = getCompletedLoansUserCase.execute();
+
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------LISTADO DE PRESTAMOS FINALIZADOS--------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%-10s %-15s %-35s %-20s %-15s %-15s\n",
+                "  ID", "  Usuario", "          Libro", "   Fecha Préstamo", "  Fecha Límite", "    Fecha Devolución");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+
+        for (Loan loan : loans) {
+            System.out.printf("%-10s | %-15s | %-35s | %-15s | %-15s | %-12s\n",
+                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().getTitle(),
+                    loan.getLoanDate(), loan.getDeadline(), loan.getReturnDate());
+        }
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
+    }
+    private static void returnLoan(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Introduce el identificador del prestamo que quieres finalizar");
+        String isbn = scan.nextLine();
+        System.out.println("Introduce la fecha en la que se esta devolviendo (DD/MM/AAAA)");
+        String finishDate = scan.nextLine();
+        ReturnLoanUseCase returnLoanUseCase=new ReturnLoanUseCase(loanDataRepository);
+        returnLoanUseCase.execute(isbn,finishDate);
     }
 }

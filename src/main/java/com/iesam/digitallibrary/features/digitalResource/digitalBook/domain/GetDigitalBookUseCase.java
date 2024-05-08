@@ -1,9 +1,7 @@
-package com.iesam.digitallibrary.features.digitalBook.domain;
-
-import java.util.ArrayList;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.domain;
 
 public class GetDigitalBookUseCase {
-    DigitalBookRepository digitalBookRepository;
+    private DigitalBookRepository digitalBookRepository;
 
     public GetDigitalBookUseCase(DigitalBookRepository digitalBookRepository) {
         this.digitalBookRepository = digitalBookRepository;

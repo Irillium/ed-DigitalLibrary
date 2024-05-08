@@ -1,8 +1,9 @@
-package com.iesam.digitallibrary.features.digitalBook.domain;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.domain;
 
-public class DigitalBook {
+import com.iesam.digitallibrary.features.digitalResource.DigitalResource;
+
+public class DigitalBook extends DigitalResource {
     public final String isbn;
-    public final String title;
     public final String author;
     public final String publisher;
     public final String genre;
@@ -10,8 +11,8 @@ public class DigitalBook {
     public final String pageCount;
 
     public DigitalBook(String isbn, String title, String author, String publisher, String genre, String synopsis, String pageCount) {
+        super(title);
         this.isbn = isbn;
-        this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.genre = genre;
