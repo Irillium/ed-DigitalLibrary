@@ -1,7 +1,7 @@
 package com.iesam.digitallibrary.features.loan.domain;
 
 public class ReturnLoanUseCase {
-    LoanRepository loanRepository;
+    private LoanRepository loanRepository;
 
     public ReturnLoanUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;

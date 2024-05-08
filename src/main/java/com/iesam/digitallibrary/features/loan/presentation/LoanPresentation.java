@@ -151,7 +151,7 @@ public class LoanPresentation {
         String c = scan.next();
         System.out.println();
     }
-    public static void returnLoan(){
+    private static void returnLoan(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el identificador del prestamo que quieres finalizar");
         String isbn = scan.nextLine();

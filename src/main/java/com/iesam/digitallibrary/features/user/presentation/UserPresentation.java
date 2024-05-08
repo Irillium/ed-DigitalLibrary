@@ -45,7 +45,7 @@ public class UserPresentation {
             }
         }
     }
-    public static void save(){
+    private static void save(){
         SaveUserUseCase saveUserUseCase = new SaveUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduzca su dni");
@@ -64,14 +64,14 @@ public class UserPresentation {
         saveUserUseCase.execute(user);
 
     }
-    public static void delete(){
+    private static void delete(){
         DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres eliminar");
         String dni = scan.nextLine();
         deleteUserUseCase.execute(dni);
     }
-    public static void modify(){
+    private static void modify(){
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres modificar");
         String dni = scan.nextLine();
@@ -89,7 +89,7 @@ public class UserPresentation {
         ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         modifyUserUseCase.execute(dni,userModify);
     }
-    public static void obtains(){
+    private static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
         ArrayList<User> userList = getUsersUseCase.execute();
         int indice = 0;

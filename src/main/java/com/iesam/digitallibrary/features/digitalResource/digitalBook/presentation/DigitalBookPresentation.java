@@ -101,7 +101,7 @@ public class DigitalBookPresentation {
         modifyDigitalBookUseCase.execute(idbn,book);
 
     }
-    public static void obtains(){
+    private static void obtains(){
         GetDigitalBooksUseCase getDigitalBooksUseCase=new GetDigitalBooksUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
         int indice = 0;

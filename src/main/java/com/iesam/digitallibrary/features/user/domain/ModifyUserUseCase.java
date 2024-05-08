@@ -1,7 +1,7 @@
 package com.iesam.digitallibrary.features.user.domain;
 
 public class ModifyUserUseCase {
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public ModifyUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
