@@ -8,12 +8,14 @@ import com.iesam.digitallibrary.features.loan.data.LoanDataRepository;
 import com.iesam.digitallibrary.features.loan.data.local.LoanFileLocalDataSource;
 import com.iesam.digitallibrary.features.loan.domain.CreateLoanUserCase;
 import com.iesam.digitallibrary.features.loan.domain.DeleteLoanUseCase;
+import com.iesam.digitallibrary.features.loan.domain.GetLoansUnfinishedUseCase;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
 import com.iesam.digitallibrary.features.user.data.UserDataRepository;
 import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource;
 import com.iesam.digitallibrary.features.user.domain.GetUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.User;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoanPresentation {
@@ -23,11 +25,14 @@ public class LoanPresentation {
         int select=-1;
         while(select!=0){
             Scanner scan = new Scanner(System.in);
-            System.out.println("-------Menú Prestamos-------");
-            System.out.println("[1] Registrar un prestamo");
-            System.out.println("[2] Eliminar un prestamo");
-            System.out.println("[0] Salir");
-            System.out.println("----------------------------");
+            System.out.println("---------------------------------------");
+            System.out.println("-------------MENÚ PRESTAMOS------------");
+            System.out.println("---------------------------------------");
+            System.out.println("\t[1] Registrar un prestamo");
+            System.out.println("\t[2] Eliminar un prestamo");
+            System.out.println("\t[3] Lista de prestamos no devuelstos");
+            System.out.println("\t[0] Salir");
+            System.out.println("---------------------------------------");
             select=scan.nextInt();
             switch (select){
                 case 0:
@@ -37,6 +42,9 @@ public class LoanPresentation {
                     break;
                 case 2:
                     delete();
+                    break;
+                case 3:
+                    unfinishedList();
                     break;
                 default:
                     System.out.println("Esa opción no existe");
@@ -94,5 +102,21 @@ public class LoanPresentation {
         String id= scan.nextLine();
         DeleteLoanUseCase deleteLoanUseCase = new DeleteLoanUseCase(loanDataRepository);
         deleteLoanUseCase.execute(id);
+    }
+    private static void unfinishedList(){
+        GetLoansUnfinishedUseCase getLoansUnfinishedUseCase=new GetLoansUnfinishedUseCase(loanDataRepository);
+        ArrayList<Loan> loans = getLoansUnfinishedUseCase.execute();
+
+        // Mostrar los préstamos por consola
+        System.out.println("---------------LISTADO DE PRESTAMOS NO DEVUELTOS---------------");
+        System.out.printf("%-10s %-15s %-30s %-30s %-30s %-12s\n",
+                "  ID", "  Usuario", "  Libro", "Fecha Préstamo", "Fecha Límite", "Fecha Devolución");
+        System.out.println("------------------------------------------------------------------------------");
+
+        for (Loan loan : loans) {
+            System.out.printf("%-10s | %-15s | %-35s | %-20s | %-20s | %-12s\n",
+                    loan.getId(), loan.getUser().getName(), loan.getDigitalBook().getTitle(),
+                    loan.getLoanDate(), loan.getDeadline(), "No devuelto");
+        }
     }
 }

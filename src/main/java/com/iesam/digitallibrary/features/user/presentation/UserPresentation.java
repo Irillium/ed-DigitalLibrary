@@ -63,6 +63,7 @@ public class UserPresentation {
         String birthDate= scan.nextLine();
         User user = new User(dni,name,surnames,email,phone,birthDate);
         saveUserUseCase.execute(user);
+
     }
     public static void delete(){
         DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
