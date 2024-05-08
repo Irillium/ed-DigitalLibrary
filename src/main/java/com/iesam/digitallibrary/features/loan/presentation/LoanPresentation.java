@@ -22,15 +22,15 @@ public class LoanPresentation {
         int select=-1;
         while(select!=0){
             Scanner scan = new Scanner(System.in);
-            System.out.println("-------------------------------------------");
-            System.out.println("---------------MENÚ PRESTAMOS--------------");
-            System.out.println("-------------------------------------------");
+            System.out.println("-----------------------------------------------");
+            System.out.println("-----------------MENÚ PRESTAMOS----------------");
+            System.out.println("-----------------------------------------------");
             System.out.println("\t[1] Registrar un prestamo");
             System.out.println("\t[2] Eliminar un prestamo");
             System.out.println("\t[3] Lista de prestamos no devueltos");
             System.out.println("\t[4] Lista de prestamos finalizados");
             System.out.println("\t[0] Salir");
-            System.out.println("-------------------------------------------");
+            System.out.println("-----------------------------------------------");
             select=scan.nextInt();
             switch (select){
                 case 0:
@@ -119,6 +119,11 @@ public class LoanPresentation {
                     loan.getId(), loan.getUser().getName(), loan.getDigitalBook().getTitle(),
                     loan.getLoanDate(), loan.getDeadline(), "No devuelto");
         }
+        System.out.println("-------------------------------------------------------------------------------");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
     }
     private static void completedList(){
         GetCompletedLoansUserCase getCompletedLoansUserCase=new GetCompletedLoansUserCase(loanDataRepository);
@@ -137,5 +142,9 @@ public class LoanPresentation {
                     loan.getLoanDate(), loan.getDeadline(), loan.getReturnDate());
         }
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\n--Introduce cualquier caracter para volver al menú--");
+        String c = scan.next();
+        System.out.println();
     }
 }
