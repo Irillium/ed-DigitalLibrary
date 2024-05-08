@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LoanDataRepository implements LoanRepository {
 
-    private LoanBookData loanBookData;
+    private final LoanBookData loanBookData;
     public LoanDataRepository(LoanBookData loanBookData) {
         this.loanBookData = loanBookData;
     }
