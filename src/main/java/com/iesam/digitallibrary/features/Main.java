@@ -1,6 +1,6 @@
 package com.iesam.digitallibrary.features;
 
-import com.iesam.digitallibrary.features.digitalBook.presentation.DigitalBookPresentation;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.presentation.DigitalBookPresentation;
 import com.iesam.digitallibrary.features.loan.presentation.LoanPresentation;
 import com.iesam.digitallibrary.features.user.presentation.UserPresentation;
 

@@ -47,4 +47,17 @@ public class LoanDataRepository implements LoanRepository {
         }
         return loansUnfinished;
     }
+
+    @Override
+    public void returned(String isbn, String endDate) {
+        Loan loan=loanBookData.findById(isbn);
+        if(loan==null){
+            System.out.println("El prestamo no existe");
+        }
+        else{
+            loan.setReturnDate(endDate);
+            System.out.println("Prestamo devuelto");
+        }
+
+    }
 }

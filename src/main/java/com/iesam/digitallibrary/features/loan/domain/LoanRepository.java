@@ -7,4 +7,5 @@ public interface LoanRepository {
     void delete(String id);
     ArrayList<Loan> obtainUnfinisheds();
     ArrayList<Loan> obtainCompleteds();
+    void returned(String isbn, String endDate);
 }

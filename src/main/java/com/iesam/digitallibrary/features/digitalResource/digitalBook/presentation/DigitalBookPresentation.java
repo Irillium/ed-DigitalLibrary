@@ -1,8 +1,8 @@
-package com.iesam.digitallibrary.features.digitalBook.presentation;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.presentation;
 
-import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataRepository;
-import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
-import com.iesam.digitallibrary.features.digitalBook.domain.*;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.DigitalBookDataRepository;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.local.DigitalBookFileLocalDataSource;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.domain.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package com.iesam.digitallibrary.features.digitalBook.domain;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.domain;
 
 public class ModifyDigitalBookUseCase {
     DigitalBookRepository digitalBookRepository;

@@ -1,4 +1,6 @@
-package com.iesam.digitallibrary.features.digitalBook.domain;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.domain;
+
+import com.iesam.digitallibrary.features.digitalResource.DigitalResource;
 
 import java.util.ArrayList;
 
