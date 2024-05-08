@@ -1,8 +1,8 @@
-package com.iesam.digitallibrary.features.digitalBook.presentation;
+package com.iesam.digitallibrary.features.digitalResource.digitalBook.presentation;
 
-import com.iesam.digitallibrary.features.digitalBook.data.DigitalBookDataRepository;
-import com.iesam.digitallibrary.features.digitalBook.data.local.DigitalBookFileLocalDataSource;
-import com.iesam.digitallibrary.features.digitalBook.domain.*;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.DigitalBookDataRepository;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.data.local.DigitalBookFileLocalDataSource;
+import com.iesam.digitallibrary.features.digitalResource.digitalBook.domain.*;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -107,7 +107,7 @@ public class DigitalBookPresentation {
         int indice = 0;
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("------------------------------------LISTA DE LIBROS DIGITALES REGISTRADOS------------------------------\n");
-        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TÍTULO", "AUTOR", "EDITORIAL", "GÉNERO", "SINOPSIS","Nº PÁGINAS");
+        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PÁGINAS");
         for ( DigitalBook book : bookList) {
             indice++;
             System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
