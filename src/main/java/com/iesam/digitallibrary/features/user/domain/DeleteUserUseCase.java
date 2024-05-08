@@ -1,7 +1,7 @@
 package com.iesam.digitallibrary.features.user.domain;
 
 public class DeleteUserUseCase {
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public DeleteUserUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;

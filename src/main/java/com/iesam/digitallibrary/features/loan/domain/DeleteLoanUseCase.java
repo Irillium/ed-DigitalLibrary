@@ -1,7 +1,7 @@
 package com.iesam.digitallibrary.features.loan.domain;
 
 public class DeleteLoanUseCase {
-    LoanRepository loanRepository;
+    private LoanRepository loanRepository;
 
     public DeleteLoanUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
