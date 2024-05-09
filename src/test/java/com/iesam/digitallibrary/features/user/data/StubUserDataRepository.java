@@ -26,8 +26,11 @@ public class StubUserDataRepository implements UserRepository {
     @Override
     public void modify(String dni, User user) {
         User u=userData.findById(dni);
-        userData.delete(u.getDni());
-        userData.save(user);
+        if(u!=null){
+            userData.delete(u.getDni());
+            userData.save(user);
+        }
+
     }
 
     @Override
