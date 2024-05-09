@@ -24,6 +24,9 @@ class GetUserUseCaseTest {
     void tearDown() {
          getUserUseCase=null;
         stubUserDataRepository=null;
+        for(User user:UserMemLocalDataSource.newInstance().findAll()){
+            UserMemLocalDataSource.newInstance().delete(user.getDni());
+        }
     }
     @Test
     public void sePideUnUsuarioQueExisteYLoDevuelve(){
