@@ -26,7 +26,7 @@ class CreateLoanUserCaseTest {
         createLoanUserCase=null;
     }
     @Test
-    public void reciboUnProductoDigitalYLoGuardoEnMemoria(){
+    public void registrarUnPrestamoYSeGuardaEnMemoria(){
         //Given
         User user = new User("12345678A", "John", "Doe", "john@example.com", "123456789", "1990-01-01");
 
