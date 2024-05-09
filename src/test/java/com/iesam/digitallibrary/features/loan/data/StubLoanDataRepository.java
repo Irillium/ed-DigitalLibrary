@@ -37,7 +37,8 @@ public class StubLoanDataRepository implements LoanRepository {
 
     @Override
     public ArrayList<Loan> obtainCompleteds() {
-        ArrayList<Loan> loans =(ArrayList<Loan>)loanData.findAll();
+        ArrayList<Loan> loans =new ArrayList<>();
+
         ArrayList<Loan> loansUnfinished = new ArrayList<>();
         for(Loan l:loans){
             if(l.getReturnDate()!=null){
