@@ -17,15 +17,15 @@ class DeleteLoanUseCaseTest {
     void setUp() {
         stubLoanDataRepository=new StubLoanDataRepository(LoanMemLocalDataSource.newInstance());
         deleteLoanUseCase=new DeleteLoanUseCase(stubLoanDataRepository);
-        for(Loan loan: LoanMemLocalDataSource.newInstance().findAll()){
-            LoanMemLocalDataSource.newInstance().delete(loan.getId());
-        }
     }
 
     @AfterEach
     void tearDown() {
          deleteLoanUseCase=null;
          stubLoanDataRepository=null;
+        for(Loan loan: LoanMemLocalDataSource.newInstance().findAll()){
+            LoanMemLocalDataSource.newInstance().delete(loan.getId());
+        }
     }
     @Test
     public void seLePideEliminarUnPrestamoExistente(){
