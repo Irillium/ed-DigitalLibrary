@@ -6,27 +6,26 @@ import com.iesam.digitallibrary.features.loan.domain.LoanRepository;
 
 import java.util.ArrayList;
 
-public class LoanDataRepository implements LoanRepository {
+public class StubLoanDataRepository implements LoanRepository {
+    LoanData loanData;
 
-    private final LoanData loanBookData;
-    public LoanDataRepository(LoanData loanBookData) {
-        this.loanBookData = loanBookData;
+    public StubLoanDataRepository(LoanData loanData) {
+        this.loanData = loanData;
     }
-
 
     @Override
     public void save(Loan loan) {
-        loanBookData.save(loan);
+        loanData.save(loan);
     }
 
     @Override
     public void delete(String id) {
-        loanBookData.delete(id);
+        loanData.delete(id);
     }
 
     @Override
     public ArrayList<Loan> obtainUnfinisheds() {
-        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
+        ArrayList<Loan> loans =(ArrayList<Loan>)loanData.findAll();
         ArrayList<Loan> loansUnfinished = new ArrayList<>();
         for(Loan l:loans){
             if(l.getReturnDate()==null){
@@ -38,7 +37,7 @@ public class LoanDataRepository implements LoanRepository {
 
     @Override
     public ArrayList<Loan> obtainCompleteds() {
-        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
+        ArrayList<Loan> loans =(ArrayList<Loan>)loanData.findAll();
         ArrayList<Loan> loansUnfinished = new ArrayList<>();
         for(Loan l:loans){
             if(l.getReturnDate()!=null){
@@ -50,7 +49,7 @@ public class LoanDataRepository implements LoanRepository {
 
     @Override
     public void returned(String isbn, String endDate) {
-        Loan loan=loanBookData.findById(isbn);
+        Loan loan=loanData.findById(isbn);
         if(loan==null){
             System.out.println("El prestamo no existe");
         }
@@ -59,5 +58,8 @@ public class LoanDataRepository implements LoanRepository {
             System.out.println("Prestamo devuelto");
         }
 
+    }
+    public Loan obtain(String id){
+        return loanData.findById(id);
     }
 }
