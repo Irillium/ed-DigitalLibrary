@@ -12,15 +12,15 @@ public class DigitalBookPresentation {
         Scanner scan = new Scanner(System.in);
         int select=-1;
         while(select!=0) {
-            System.out.println("--------------------------------------");
-            System.out.println("------MENÚ DE RECURSOS DIGITALES------");
-            System.out.println("--------------------------------------");
+            System.out.println("------------------------------------");
+            System.out.println("-----MENÚ DE RECURSOS DIGITALES-----");
+            System.out.println("------------------------------------");
             System.out.println("\t [1] Registrar un libro digital.");
             System.out.println("\t [2] Eliminar un libro digital.");
             System.out.println("\t [3] Modificar un libro digital.");
             System.out.println("\t [4] Ver lista.");
             System.out.println("\t [0] Salir");
-            System.out.println("--------------------------------------");
+            System.out.println("------------------------------------");
 
             select = scan.nextInt();
             switch (select) {
@@ -101,16 +101,16 @@ public class DigitalBookPresentation {
         modifyDigitalBookUseCase.execute(idbn,book);
 
     }
-    private static void obtains(){
+    public static void obtains(){
         GetDigitalBooksUseCase getDigitalBooksUseCase=new GetDigitalBooksUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
         int indice = 0;
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("------------------------------------LISTA DE LIBROS DIGITALES REGISTRADOS------------------------------\n");
-        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TÍTULO", "AUTOR", "EDITORIAL", "GÉNERO", "SINOPSIS","Nº PÁGINAS");
+        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PÁGINAS");
         for ( DigitalBook book : bookList) {
             indice++;
-            System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s \t%-5s \n", indice,
+            System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
 
                     (book.getIsbn() != null ? book.getIsbn() : " "),
                     (book.getTitle() != null ? book.getTitle(): " "),
@@ -120,7 +120,6 @@ public class DigitalBookPresentation {
                     (book.getSynopsis() != null ? book.getSynopsis() : ""),
                     (book.getPageCount() != null ? book.getPageCount() : ""));
         }
-        System.out.println("-----------------------------------------------------------------------------------------------------");
         Scanner scan = new Scanner(System.in);
         System.out.println("\n--Introduce cualquier caracter para volver al menú--");
         String c = scan.next();
