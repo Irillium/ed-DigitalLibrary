@@ -5,6 +5,7 @@ import com.iesam.digitallibrary.features.user.domain.User;
 import com.iesam.digitallibrary.features.user.domain.UserRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StubUserDataRepository implements UserRepository {
     private UserData userData;
@@ -26,13 +27,22 @@ public class StubUserDataRepository implements UserRepository {
     @Override
     public void modify(String dni, User user) {
         User u=userData.findById(dni);
-        userData.delete(u.getDni());
-        userData.save(user);
+        if(u!=null){
+            userData.delete(u.getDni());
+            userData.save(user);
+        }
+
     }
 
     @Override
     public ArrayList<User> obtains() {
-        return (ArrayList<User>)userData.findAll();
+        List<User> users= userData.findAll();
+        if(!users.isEmpty()) {
+            return new ArrayList<>(users);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
