@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class LoanMemLocalDataSource implements LoanBookData {
+public class LoanMemLocalDataSource implements LoanData {
 
     private static LoanMemLocalDataSource digitalBookMemLocalDataSource=null;
     public static LoanMemLocalDataSource newInstance(){
