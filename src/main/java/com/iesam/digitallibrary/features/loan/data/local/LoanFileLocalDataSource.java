@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class LoanFileLocalDataSource implements LoanBookData {
+public class LoanFileLocalDataSource implements LoanData {
 
     private String nameFile = "loan.txt";
 
