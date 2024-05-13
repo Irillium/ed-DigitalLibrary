@@ -43,7 +43,7 @@ class GetUsersUseCaseTest {
         //When
         ArrayList<User> dataUsers= getUsersUseCase.execute();
         //Then
-        Assertions.assertNotNull(dataUsers.getFirst());
+        Assertions.assertNotNull(dataUsers.get(0));
     }
     @Test
     public void devuelveUnaListaVacia(){

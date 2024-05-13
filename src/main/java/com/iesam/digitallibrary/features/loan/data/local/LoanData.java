@@ -5,7 +5,7 @@ import com.iesam.digitallibrary.features.loan.domain.Loan;
 
 import java.util.List;
 
-public interface LoanBookData {
+public interface LoanData {
     public void save(Loan model);
     public void saveList(List<Loan> models);
     public Loan findById(String id);
