@@ -6,6 +6,7 @@ import com.iesam.digitallibrary.features.user.domain.User;
 import com.iesam.digitallibrary.features.user.domain.UserRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDataRepository implements UserRepository {
     UserData userData;
@@ -38,7 +39,13 @@ public class UserDataRepository implements UserRepository {
 
     @Override
     public ArrayList<User> obtains() {
-        return (ArrayList<User>) userData.findAll();
+        List<User> users= userData.findAll();
+        if(!users.isEmpty()) {
+            return new ArrayList<>(users);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
