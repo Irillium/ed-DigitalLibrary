@@ -82,7 +82,7 @@ public class DigitalBookPresentation {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Introduce el isbn del libro digital que desea modificar");
-        String idbn = scan.nextLine();
+        String isbn = scan.nextLine();
         System.out.println("Introduce el nuevo titulo");
         String title = scan.nextLine();
         System.out.println("Introduce el nuevo autor");
@@ -96,24 +96,24 @@ public class DigitalBookPresentation {
         System.out.println("Introduce el nuevo número de páginas que tiene");
         String pageCount = scan.nextLine();
 
-        DigitalBook book = new DigitalBook(idbn,title,author,publisher,genre,synopsis,pageCount);
+        DigitalBook book = new DigitalBook(isbn,title,author,publisher,genre,synopsis,pageCount);
         ModifyDigitalBookUseCase modifyDigitalBookUseCase = new ModifyDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
-        modifyDigitalBookUseCase.execute(idbn,book);
+        modifyDigitalBookUseCase.execute(isbn,book);
 
     }
-    public static void obtains(){
+    private static void obtains(){
         GetDigitalBooksUseCase getDigitalBooksUseCase=new GetDigitalBooksUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         ArrayList<DigitalBook> bookList = getDigitalBooksUseCase.execute();
         int indice = 0;
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("------------------------------------LISTA DE LIBROS DIGITALES REGISTRADOS------------------------------\n");
-        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PÁGINAS");
+        System.out.printf("%-5s %-15s %-40s %-25s %-15s %-20s %-65s %-5s\n", " ","ISBN", "        TITULO", "AUTOR", "EDITORIAL", "GENERO", "SINOPSIS","Nº PAGINAS");
         for ( DigitalBook book : bookList) {
             indice++;
             System.out.printf("%-5s %-10s %-40s %-15s %-10s %-20s %-65s %-5s \n", indice,
 
                     (book.getIsbn() != null ? book.getIsbn() : " "),
-                    (book.getTitle() != null ? book.getTitle(): " "),
+                    (book.getName() != null ? book.getName(): " "),
                     (book.getAuthor() != null ? book.getAuthor() : " "),
                     (book.getPublisher() != null ? book.getPublisher() : " "),
                     (book.getGenre() != null ? book.getGenre() : " "),

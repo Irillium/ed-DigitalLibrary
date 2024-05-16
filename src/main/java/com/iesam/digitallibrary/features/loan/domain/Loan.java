@@ -1,6 +1,6 @@
 package com.iesam.digitallibrary.features.loan.domain;
 
-import com.iesam.digitallibrary.features.digitalResource.DigitalResource;
+import com.iesam.digitallibrary.features.digitalResource.domain.DigitalResource;
 import com.iesam.digitallibrary.features.user.domain.User;
 
 public class Loan {
