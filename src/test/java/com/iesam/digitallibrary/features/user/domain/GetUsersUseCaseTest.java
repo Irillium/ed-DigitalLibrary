@@ -44,7 +44,7 @@ class GetUsersUseCaseTest {
         ArrayList<User> dataUsers= getUsersUseCase.execute();
         //Then
 
-        Assertions.assertNotNull(dataUsers.getFirst());
+        Assertions.assertFalse(dataUsers.isEmpty());
 
     }
     @Test
@@ -54,6 +54,6 @@ class GetUsersUseCaseTest {
         //When
         ArrayList<User> dataUsers= getUsersUseCase.execute();
         //Then
-        Assertions.assertNull(dataUsers);
+        Assertions.assertTrue(dataUsers.isEmpty());
     }
 }

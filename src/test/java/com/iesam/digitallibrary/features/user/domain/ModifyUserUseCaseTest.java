@@ -37,7 +37,6 @@ class ModifyUserUseCaseTest {
         modifyUserUseCase.execute(userExist.dni,userNew);
         //Then
         User userMody=stubUserDataRepository.obtain("69");
-        Assertions.assertNotNull(userMody);
         Assertions.assertEquals(userMody.getDni(),userNew.getDni());
         Assertions.assertEquals(userMody.getName(),userNew.getName());
         Assertions.assertEquals(userMody.getSurnames(),userNew.getSurnames());
