@@ -3,32 +3,26 @@ package com.iesam.digitallibrary.features.loan.domain;
 import com.iesam.digitallibrary.features.digitalResource.DigitalResource;
 import com.iesam.digitallibrary.features.user.domain.User;
 
+import java.time.LocalDate;
+
 public class Loan {
     public final String id;
     public final User user;
     public final DigitalResource digitalResource;
-    public final String loanDate;
-    public final String deadline;
-    private String returnDate;
+    public final LocalDate loanDate;
+    public final LocalDate deadline;
+    private LocalDate returnDate;
+    private LocalDate today= LocalDate.now();
 
-    public Loan(String id, User user, DigitalResource digitalResource, String loanDate, String deadline) {
+    public Loan(String id, User user, DigitalResource digitalResource) {
         this.id = id;
         this.user = user;
         this.digitalResource = digitalResource;
-        this.loanDate = loanDate;
-        this.deadline = deadline;
-        this.returnDate = null;
-    }
-    public Loan(String id, User user, DigitalResource digitalResource, String loanDate, String deadline, String returnDate) {
-        this.id = id;
-        this.user = user;
-        this.digitalResource = digitalResource;
-        this.loanDate = loanDate;
-        this.deadline = deadline;
-        this.returnDate = returnDate;
+        this.loanDate  = LocalDate.now();
+        this.deadline = today.plusDays(60);
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -44,15 +38,15 @@ public class Loan {
         return digitalResource;
     }
 
-    public String getLoanDate() {
+    public LocalDate getLoanDate() {
         return loanDate;
     }
 
-    public String getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public String getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 }
