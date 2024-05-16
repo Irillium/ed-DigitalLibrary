@@ -114,7 +114,7 @@ public class LoanPresentation {
 
         for (Loan loan : loans) {
             System.out.printf("%-10s | %-15s | %-35s | %-20s | %-20s | %-12s\n",
-                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().getTitle(),
+                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().getName(),
                     loan.getLoanDate(), loan.getDeadline(), "No devuelto");
         }
         System.out.println("-------------------------------------------------------------------------------");
@@ -136,7 +136,7 @@ public class LoanPresentation {
 
         for (Loan loan : loans) {
             System.out.printf("%-10s | %-15s | %-35s | %-15s | %-15s | %-12s\n",
-                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().getTitle(),
+                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().name,
                     loan.getLoanDate(), loan.getDeadline(), loan.getReturnDate());
         }
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
