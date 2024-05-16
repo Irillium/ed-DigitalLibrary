@@ -54,6 +54,6 @@ class GetUsersUseCaseTest {
         //When
         ArrayList<User> dataUsers= getUsersUseCase.execute();
         //Then
-        Assertions.assertTrue(dataUsers.isEmpty());
+        Assertions.assertNull(dataUsers);
     }
 }

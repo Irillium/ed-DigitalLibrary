@@ -32,7 +32,7 @@ class DeleteLoanUseCaseTest {
         //Given
         User user = new User("12345678A", "John", "Doe", "john@example.com", "123456789", "1990-01-01");
         DigitalBook digitalBook = new DigitalBook("1234567890", "Tetleee","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
-        Loan loanSave = new Loan("1", user, digitalBook, "2024-04-24", "2024-05-24");
+        Loan loanSave = new Loan("1", user, digitalBook);
         stubLoanDataRepository.save(loanSave);
         //When
         deleteLoanUseCase.execute("1");
@@ -44,7 +44,7 @@ class DeleteLoanUseCaseTest {
         //Given
         User user = new User("12345678A", "John", "Doe", "john@example.com", "123456789", "1990-01-01");
         DigitalBook digitalBook = new DigitalBook("1234567890", "Tetleee","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
-        Loan loanSave = new Loan("1", user, digitalBook, "2024-04-24", "2024-05-24");
+        Loan loanSave = new Loan("1", user, digitalBook);
         stubLoanDataRepository.save(loanSave);
         //When
         deleteLoanUseCase.execute("38");

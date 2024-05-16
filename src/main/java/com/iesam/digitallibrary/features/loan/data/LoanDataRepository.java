@@ -50,13 +50,15 @@ public class LoanDataRepository implements LoanRepository {
     }
 
     @Override
-    public void returned(String isbn, LocalDate endDate) {
+    public void returned(String isbn) {
         Loan loan=loanBookData.findById(isbn);
+        loanBookData.delete(isbn);
         if(loan==null){
             System.out.println("El prestamo no existe");
         }
         else{
-            loan.setReturnDate(endDate);
+            loan.setReturnDate();
+            loanBookData.save(loan);
             System.out.println("Prestamo devuelto");
         }
 

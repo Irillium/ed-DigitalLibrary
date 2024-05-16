@@ -32,11 +32,11 @@ class ReturnLoanUseCaseTest {
         //Given
         User user1 = new User("12345678A", "John", "Doe", "john@example.com", "123456789", "1990-01-01");
         DigitalBook digitalBook1 = new DigitalBook("1234567890", "wuye","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
-        Loan loan1 = new Loan("1", user1, digitalBook1, "2024-04-24", "2024-05-24");
+        Loan loan1 = new Loan("1", user1, digitalBook1);
         //When
 
-        returnLoanUseCase.execute("1","2024-05-04");
+        returnLoanUseCase.execute("1");
         //Then
-        Mockito.verify(mockRepository, Mockito.times(1)).returned("1","2024-05-04");
+        Mockito.verify(mockRepository, Mockito.times(1)).returned("1");
     }
 }
