@@ -12,6 +12,7 @@ import com.iesam.digitallibrary.features.user.data.local.UserFileLocalDataSource
 import com.iesam.digitallibrary.features.user.domain.GetUserUseCase;
 import com.iesam.digitallibrary.features.user.domain.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -75,7 +76,7 @@ public class LoanPresentation {
                 }
             }
         }
-        System.out.println("Introduce el código del recurso digital(isbn)");
+        System.out.println("Introduce el código del recurso digital");
         String isbn=scan.nextLine();
         GetDigitalBookUseCase getDigitalBookUseCase= new GetDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
         DigitalBook digitalBook= getDigitalBookUseCase.execute(isbn);
@@ -90,16 +91,9 @@ public class LoanPresentation {
                 }
             }
         }
-        System.out.println("Introduce la fecha en la que se realiza del prestamo");
-        String starDate=scan.nextLine();
-        System.out.println("Introduce la fecha de devolución  del prestamo");
-        String endDate=scan.nextLine();
-
-        Loan loan=new Loan(id,user,digitalBook,starDate,endDate);
+        Loan loan=new Loan(id,user,digitalBook);
         CreateLoanUserCase createLoanUserCase= new CreateLoanUserCase(loanDataRepository);
         createLoanUserCase.execute(loan);
-
-
     }
     private static void delete(){
         System.out.println("Introduce el id del prestamo a eliminar");
@@ -155,8 +149,7 @@ public class LoanPresentation {
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el identificador del prestamo que quieres finalizar");
         String isbn = scan.nextLine();
-        System.out.println("Introduce la fecha en la que se esta devolviendo (DD/MM/AAAA)");
-        String finishDate = scan.nextLine();
+        LocalDate finishDate = LocalDate.now();
         ReturnLoanUseCase returnLoanUseCase=new ReturnLoanUseCase(loanDataRepository);
         returnLoanUseCase.execute(isbn,finishDate);
     }

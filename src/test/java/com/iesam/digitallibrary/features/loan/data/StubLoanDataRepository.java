@@ -4,6 +4,7 @@ import com.iesam.digitallibrary.features.loan.data.local.LoanData;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
 import com.iesam.digitallibrary.features.loan.domain.LoanRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StubLoanDataRepository implements LoanRepository {
@@ -49,7 +50,7 @@ public class StubLoanDataRepository implements LoanRepository {
     }
 
     @Override
-    public void returned(String isbn, String endDate) {
+    public void returned(String isbn, LocalDate endDate) {
         Loan loan=loanData.findById(isbn);
         if(loan==null){
             System.out.println("El prestamo no existe");
