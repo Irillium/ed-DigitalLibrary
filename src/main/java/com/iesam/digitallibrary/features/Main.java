@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
        int select=-1;
-       System.out.println("¡Hola! Bienvenido a Ditilal Library");
+       System.out.println("¡Hola! Bienvenido a Digilal Library");
        System.out.println("¿Qué desea hacer?\n");
        while (select!=0){
            System.out.println("-------------------------------");

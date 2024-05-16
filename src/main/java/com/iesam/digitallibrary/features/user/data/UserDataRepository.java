@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDataRepository implements UserRepository {
-    UserData userData;
+    private UserData userData;
 
     public UserDataRepository(UserData userData) {
         this.userData = userData;
