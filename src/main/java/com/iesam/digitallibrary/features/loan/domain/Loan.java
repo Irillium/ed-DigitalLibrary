@@ -22,8 +22,8 @@ public class Loan {
         this.deadline = today.plusDays(60);
     }
 
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
+    public void setReturnDate() {
+        this.returnDate = today;
     }
 
     public String getId() {

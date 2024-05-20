@@ -8,7 +8,7 @@ public class ReturnLoanUseCase {
     public ReturnLoanUseCase(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
-    public void execute(String isbn, LocalDate endDate){
-            loanRepository.returned(isbn,endDate);
+    public void execute(String isbn){
+            loanRepository.returned(isbn);
     }
 }

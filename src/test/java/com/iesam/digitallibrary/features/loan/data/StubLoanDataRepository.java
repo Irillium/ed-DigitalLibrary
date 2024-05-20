@@ -50,13 +50,13 @@ public class StubLoanDataRepository implements LoanRepository {
     }
 
     @Override
-    public void returned(String isbn, LocalDate endDate) {
+    public void returned(String isbn) {
         Loan loan=loanData.findById(isbn);
         if(loan==null){
             System.out.println("El prestamo no existe");
         }
         else{
-            loan.setReturnDate(endDate);
+            loan.setReturnDate();
             System.out.println("Prestamo devuelto");
         }
 

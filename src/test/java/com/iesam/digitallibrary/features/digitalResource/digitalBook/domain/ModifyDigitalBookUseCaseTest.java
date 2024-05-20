@@ -33,7 +33,7 @@ class ModifyDigitalBookUseCaseTest {
         modifyDigitalBookUseCase.execute("d7yr",bookNew);
         //Then
         DigitalBook bookObs=stubDigitalBookDataRepository.obtain("d7yr");
-        Assertions.assertEquals(bookObs.getTitle(),bookNew.getTitle());
+        Assertions.assertEquals(bookObs.getName(),bookNew.getName());
         Assertions.assertEquals(bookObs.getAuthor(),bookNew.getAuthor());
         Assertions.assertEquals(bookObs.getPublisher(),bookNew.getPublisher());
         Assertions.assertEquals(bookObs.getGenre(),bookNew.getGenre());
@@ -50,7 +50,7 @@ class ModifyDigitalBookUseCaseTest {
         modifyDigitalBookUseCase.execute("456",bookNew);
         //Then
         DigitalBook bookObs=stubDigitalBookDataRepository.obtain("d7yr");
-        Assertions.assertNotEquals(bookObs.getTitle(),bookNew.getTitle());
+        Assertions.assertNotEquals(bookObs.getName(),bookNew.getName());
         Assertions.assertNotEquals(bookObs.getAuthor(),bookNew.getAuthor());
         Assertions.assertNotEquals(bookObs.getPublisher(),bookNew.getPublisher());
         Assertions.assertNotEquals(bookObs.getGenre(),bookNew.getGenre());

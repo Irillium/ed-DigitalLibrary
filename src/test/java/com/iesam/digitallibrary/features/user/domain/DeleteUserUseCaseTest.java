@@ -36,7 +36,7 @@ class DeleteUserUseCaseTest {
         deleteUserUseCase.execute("3");
         //Then
         User delUser=stubUserDataRepository.obtain("3");
-        Assertions.assertNull(delUser,"Usuario borrado/nulo");
+        Assertions.assertNull(delUser);
     }
     @Test
     public void alPasarleUnUserQueNoExisteNoBorraNada(){
@@ -48,6 +48,6 @@ class DeleteUserUseCaseTest {
         deleteUserUseCase.execute("39");
         //Then
         User delUser=stubUserDataRepository.obtain("3");
-        Assertions.assertNotNull(delUser,"El usuario no fue borrado");
+        Assertions.assertNotNull(delUser);
     }
 }

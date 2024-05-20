@@ -41,8 +41,8 @@ class GetLoansUnfinishedUseCaseTest {
         DigitalBook digitalBook1 = new DigitalBook("1234567890", "wuye","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
         DigitalBook digitalBook2 = new DigitalBook("0987654321", "wdspie","Author 2", "Publisher 2", "Genre 2", "Synopsis 2", "150");
 
-        Loan loan1 = new Loan("1", user1, digitalBook1, "2024-04-24", "2024-05-24");
-        Loan loan2 = new Loan("2", user2, digitalBook2, "2024-04-25", "2024-05-25");
+        Loan loan1 = new Loan("1", user1, digitalBook1);
+        Loan loan2 = new Loan("2", user2, digitalBook2);
         ArrayList<Loan> loansTest=new ArrayList<>();
         loansTest.add(loan1);
         loansTest.add(loan2);

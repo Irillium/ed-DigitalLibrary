@@ -149,8 +149,7 @@ public class LoanPresentation {
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el identificador del prestamo que quieres finalizar");
         String isbn = scan.nextLine();
-        LocalDate finishDate = LocalDate.now();
         ReturnLoanUseCase returnLoanUseCase=new ReturnLoanUseCase(loanDataRepository);
-        returnLoanUseCase.execute(isbn,finishDate);
+        returnLoanUseCase.execute(isbn);
     }
 }
