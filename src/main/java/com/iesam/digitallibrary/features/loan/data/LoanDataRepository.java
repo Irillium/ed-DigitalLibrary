@@ -26,28 +26,11 @@ public class LoanDataRepository implements LoanRepository {
     }
 
     @Override
-    public ArrayList<Loan> obtainUnfinisheds() {
+    public ArrayList<Loan> obtain() {
         ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
-        ArrayList<Loan> loansUnfinished = new ArrayList<>();
-        for(Loan l:loans){
-            if(l.getReturnDate()==null){
-                loansUnfinished.add(l);
-            }
-        }
-        return loansUnfinished;
+        return loans;
     }
 
-    @Override
-    public ArrayList<Loan> obtainCompleteds() {
-        ArrayList<Loan> loans =(ArrayList<Loan>)loanBookData.findAll();
-        ArrayList<Loan> loansUnfinished = new ArrayList<>();
-        for(Loan l:loans){
-            if(l.getReturnDate()!=null){
-                loansUnfinished.add(l);
-            }
-        }
-        return loansUnfinished;
-    }
 
     @Override
     public void returned(String isbn) {

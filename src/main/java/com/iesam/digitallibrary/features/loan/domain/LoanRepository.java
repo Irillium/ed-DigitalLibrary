@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public interface LoanRepository {
     void save(Loan loan);
     void delete(String id);
-    ArrayList<Loan> obtainUnfinisheds();
-    ArrayList<Loan> obtainCompleteds();
+    ArrayList<Loan> obtain();
     void returned(String isbn);
 }
