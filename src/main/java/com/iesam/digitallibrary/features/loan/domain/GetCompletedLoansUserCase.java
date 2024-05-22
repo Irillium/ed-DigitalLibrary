@@ -9,6 +9,13 @@ public class GetCompletedLoansUserCase {
         this.loanRepository = loanRepository;
     }
     public ArrayList<Loan> execute(){
-        return loanRepository.obtainCompleteds();
+        ArrayList<Loan> loans =loanRepository.obtain();
+        ArrayList<Loan> loansCompleted = new ArrayList<>();
+        for(Loan l:loans){
+            if(l.getReturnDate()!=null){
+                loansCompleted.add(l);
+            }
+        }
+        return loansCompleted;
     }
 }
