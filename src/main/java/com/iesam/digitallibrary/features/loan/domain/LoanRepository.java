@@ -7,5 +7,7 @@ public interface LoanRepository {
     void save(Loan loan);
     void delete(String id);
     ArrayList<Loan> obtain();
-    void returned(String isbn);
+
+
+    void returned(String isbn, LocalDate today);
 }
