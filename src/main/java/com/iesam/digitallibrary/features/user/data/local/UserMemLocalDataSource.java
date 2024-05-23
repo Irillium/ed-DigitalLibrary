@@ -14,6 +14,11 @@ public class UserMemLocalDataSource implements UserData {
         }
         return userMemLocalDataSource;
     }
+
+    private UserMemLocalDataSource() {
+
+    }
+
     private Map<String, User> dataStore = new TreeMap<>();
 
     public void save(User model) {
