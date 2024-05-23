@@ -15,7 +15,7 @@ class SaveUserUseCaseTest {
     private SaveUserUseCase saveUserUseCase;
     UserDataRepository mockRepository = mock(UserDataRepository.class);
 
-    @BeforeEach
+    @BeforeEach  
     void setUp() {
         saveUserUseCase=new SaveUserUseCase(mockRepository);
     }

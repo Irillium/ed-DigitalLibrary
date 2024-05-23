@@ -4,18 +4,19 @@ import com.iesam.digitallibrary.features.digitalResource.domain.DigitalResource;
 import com.iesam.digitallibrary.features.user.domain.User;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class Loan {
-    public final String id;
+    //Es una clase que genera ids dificilmente repetibles de java
+    public final String id =  UUID.randomUUID().toString();;
     public final User user;
-    public final DigitalResource digitalResource;
+    public DigitalResource digitalResource;
     public final LocalDate loanDate;
     public final LocalDate deadline;
     private LocalDate returnDate;
     private LocalDate today= LocalDate.now();
 
-    public Loan(String id, User user, DigitalResource digitalResource) {
-        this.id = id;
+    public Loan( User user, DigitalResource digitalResource) {
         this.user = user;
         this.digitalResource = digitalResource;
         this.loanDate  = LocalDate.now();

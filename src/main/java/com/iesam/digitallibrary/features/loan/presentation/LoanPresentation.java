@@ -16,7 +16,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LoanPresentation {
+public class
+LoanPresentation {
     static LoanDataRepository loanDataRepository= new LoanDataRepository(new LoanFileLocalDataSource());
 
     public static void loanMenu(){
@@ -59,8 +60,7 @@ public class LoanPresentation {
     }
     private static void save(){
         Scanner scan = new Scanner(System.in);
-        System.out.println("Introduce el identificador del prestamo");
-        String id=scan.nextLine();
+
         System.out.println("Introduce tu dni");
         String dni=scan.nextLine();
         GetUserUseCase getUserUseCase= new GetUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
@@ -76,24 +76,38 @@ public class LoanPresentation {
                 }
             }
         }
-        System.out.println("Introduce el código del recurso digital");
-        String isbn=scan.nextLine();
-        GetDigitalBookUseCase getDigitalBookUseCase= new GetDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
-        DigitalBook digitalBook= getDigitalBookUseCase.execute(isbn);
-        if(digitalBook==null){
-            while(true){
-                System.out.println("El libro no existe, introduzca otro codigo");
-                isbn=scan.nextLine();
-                digitalBook= getDigitalBookUseCase.execute(isbn);
-                if(digitalBook!=null){
-                    System.out.println("Ese si existe");
+        int select=-1;
+        while(select!=0) {
+            System.out.println("Que recurso quieres meter?");
+            System.out.println("\t[1] Un Libro");
+            select=scan.nextInt();
+            switch (select){
+                case 1:
+                    System.out.println("Introduce el código del libro digital");
+                    String isbn=scan.nextLine();
+                    GetDigitalBookUseCase getDigitalBookUseCase= new GetDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
+                    DigitalBook digitalBook= getDigitalBookUseCase.execute(isbn);
+                    if(digitalBook==null){
+                        
+                        while(true){
+                            System.out.println("El libro no existe, introduzca otro codigo");
+                            isbn=scan.nextLine();
+                            digitalBook= getDigitalBookUseCase.execute(isbn);
+                            if(digitalBook!=null){
+                                System.out.println("Ese si existe");
+                                break;
+                            }
+                        }
+                    }
+                    Loan loan=new Loan(user,digitalBook);
+                    CreateLoanUserCase createLoanUserCase= new CreateLoanUserCase(loanDataRepository);
+                    createLoanUserCase.execute(loan);
                     break;
-                }
+                default:
+                    System.out.println("Elige una opcion valida");
             }
         }
-        Loan loan=new Loan(id,user,digitalBook);
-        CreateLoanUserCase createLoanUserCase= new CreateLoanUserCase(loanDataRepository);
-        createLoanUserCase.execute(loan);
+
     }
     private static void delete(){
         System.out.println("Introduce el id del prestamo a eliminar");
