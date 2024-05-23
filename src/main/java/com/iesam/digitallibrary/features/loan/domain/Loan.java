@@ -13,18 +13,22 @@ public class Loan {
     public DigitalResource digitalResource;
     public final LocalDate loanDate;
     public final LocalDate deadline;
-    private LocalDate returnDate;
+    private final LocalDate returnDate;
     private LocalDate today= LocalDate.now();
 
-    public Loan( User user, DigitalResource digitalResource) {
+    public Loan( User user, DigitalResource digitalResource, LocalDate returnDate) {
         this.user = user;
         this.digitalResource = digitalResource;
         this.loanDate  = LocalDate.now();
         this.deadline = today.plusDays(60);
+        this.returnDate=returnDate;
     }
-
-    public void setReturnDate() {
-        this.returnDate = today;
+    public Loan(User user, DigitalResource digitalResource, LocalDate loanDate, LocalDate deadline, LocalDate returnDate) {
+        this.user = user;
+        this.digitalResource = digitalResource;
+        this.loanDate = loanDate;
+        this.deadline = deadline;
+        this.returnDate = returnDate;
     }
 
     public String getId() {

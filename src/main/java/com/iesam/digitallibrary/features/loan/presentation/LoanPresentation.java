@@ -79,8 +79,11 @@ LoanPresentation {
         int select=-1;
         while(select!=0) {
             System.out.println("Que recurso quieres meter?");
+            System.out.println("-----------------------");
             System.out.println("\t[1] Un Libro");
+            System.out.println("-----------------------");
             select=scan.nextInt();
+            scan.nextLine();
             switch (select){
                 case 1:
                     System.out.println("Introduce el código del libro digital");
@@ -88,7 +91,7 @@ LoanPresentation {
                     GetDigitalBookUseCase getDigitalBookUseCase= new GetDigitalBookUseCase(new DigitalBookDataRepository(new DigitalBookFileLocalDataSource()));
                     DigitalBook digitalBook= getDigitalBookUseCase.execute(isbn);
                     if(digitalBook==null){
-                        
+
                         while(true){
                             System.out.println("El libro no existe, introduzca otro codigo");
                             isbn=scan.nextLine();
@@ -99,12 +102,12 @@ LoanPresentation {
                             }
                         }
                     }
-                    Loan loan=new Loan(user,digitalBook);
+                    Loan loan=new Loan(user,digitalBook,null);
                     CreateLoanUserCase createLoanUserCase= new CreateLoanUserCase(loanDataRepository);
                     createLoanUserCase.execute(loan);
                     break;
                 default:
-                    System.out.println("Elige una opcion valida");
+                    System.out.println("Elige una opcion valida\n");
             }
         }
 
@@ -144,13 +147,14 @@ LoanPresentation {
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
         System.out.println("--------------------------------------------LISTADO DE PRESTAMOS FINALIZADOS--------------------------------------------");
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-10s %-15s %-35s %-20s %-15s %-15s\n",
-                "  ID", "  Usuario", "          Libro", "   Fecha Préstamo", "  Fecha Límite", "    Fecha Devolución");
+        System.out.printf("%-10s %-15s %-35s %-15 %-20s %-15s %-15s\n",
+                "  ID", "  Usuario", "          Libro", "Tipo","   Fecha Préstamo", "  Fecha Límite", "    Fecha Devolución");
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
 
         for (Loan loan : loans) {
-            System.out.printf("%-10s | %-15s | %-35s | %-15s | %-15s | %-12s\n",
-                    loan.getId(), loan.getUser().getName(), loan.getDigitalResource().name,
+            System.out.printf("%-10s | %-15s | %-15s | %-35s | %-15s | %-15s | %-12s\n",
+                    loan.getId(), loan.getUser().getName() ,loan.getDigitalResource().getName(),
+                    loan.getDigitalResource().getType(),
                     loan.getLoanDate(), loan.getDeadline(), loan.getReturnDate());
         }
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
@@ -163,7 +167,8 @@ LoanPresentation {
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el identificador del prestamo que quieres finalizar");
         String isbn = scan.nextLine();
+        LocalDate today= LocalDate.now();
         ReturnLoanUseCase returnLoanUseCase=new ReturnLoanUseCase(loanDataRepository);
-        returnLoanUseCase.execute(isbn);
+        returnLoanUseCase.execute(isbn,today);
     }
 }

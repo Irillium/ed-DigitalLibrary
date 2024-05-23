@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
@@ -31,12 +33,12 @@ class ReturnLoanUseCaseTest {
     public void seCogeUnPrestamoExistenteYSeLeModifucaLaFechaDeDevolucionDeNuloAXFecha(){
         //Given
         User user1 = new User("12345678A", "John", "Doe", "john@example.com", "123456789", "1990-01-01");
-        DigitalBook digitalBook1 = new DigitalBook("1234567890", "wuye","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
-        Loan loan1 = new Loan("1", user1, digitalBook1);
+        DigitalBook digitalBook1 = new DigitalBook("Libro","1234567890", "wuye","Author 1", "Publisher 1", "Genre 1", "Synopsis 1", "100");
+        Loan loan1 = new Loan( user1, digitalBook1,null);
         //When
-
-        returnLoanUseCase.execute("1");
+        LocalDate today =LocalDate.now();
+        returnLoanUseCase.execute("1", today);
         //Then
-        Mockito.verify(mockRepository, Mockito.times(1)).returned("1");
+        Mockito.verify(mockRepository, Mockito.times(1)).returned("1",today);
     }
 }
