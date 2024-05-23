@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserPresentation {
+    private static UserDataRepository userDataRepository=new UserDataRepository(new UserFileLocalDataSource());
     public static void userMenu(){
         Scanner scan = new Scanner(System.in);
         int select=-1;
@@ -19,7 +20,8 @@ public class UserPresentation {
             System.out.println("\t [1] Registrar Usuario");
             System.out.println("\t [2] Modificar Usuario");
             System.out.println("\t [3] Eliminar Usuario");
-            System.out.println("\t [4] Obtener Listado de usuarios existentes");
+            System.out.println("\t [4] Obtener un usuario");
+            System.out.println("\t [5] Obtener Listado de usuarios existentes");
             System.out.println("\t [0] Salir");
             System.out.println("-----------------------------------------------");
             select = scan.nextInt();
@@ -38,6 +40,9 @@ public class UserPresentation {
                     System.out.println("USUARIO ELIMINADO");
                     break;
                 case 4:
+                    obtain();
+                    break;
+                case 5:
                     obtains();
                     break;
                 default:
@@ -46,7 +51,7 @@ public class UserPresentation {
         }
     }
     private static void save(){
-        SaveUserUseCase saveUserUseCase = new SaveUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        SaveUserUseCase saveUserUseCase = new SaveUserUseCase(userDataRepository);
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduzca su dni");
         String dni= scan.nextLine();
@@ -65,7 +70,7 @@ public class UserPresentation {
 
     }
     private static void delete(){
-        DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        DeleteUserUseCase deleteUserUseCase = new DeleteUserUseCase(userDataRepository);
         Scanner scan = new Scanner(System.in);
         System.out.println("Introduce el dni del usuario que quieres eliminar");
         String dni = scan.nextLine();
@@ -86,8 +91,25 @@ public class UserPresentation {
         System.out.println("Intruduce la nueva fecha de nacimiento(o el que ya tenía)");
         String birthDate = scan.nextLine();
         User userModify = new User(dni,name,surnames,email,phone,birthDate);
-        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(new UserDataRepository(new UserFileLocalDataSource()));
+        ModifyUserUseCase modifyUserUseCase = new ModifyUserUseCase(userDataRepository);
         modifyUserUseCase.execute(dni,userModify);
+    }
+    private static void obtain(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Introduce el dni de usuario que desea buscar");
+        String dni= scan.nextLine();
+        GetUserUseCase getUserUseCase= new GetUserUseCase(userDataRepository);
+        User user=getUserUseCase.execute(dni);
+        if(user!=null){
+            System.out.printf("%-5s %-15s %-10s %-20s %-20s %-15s %-10s\n", " ","DNI", "NOMBRE", "APELLIDOS", "CORREO", "TELEFONO", "F. NACIMIENTO");
+                System.out.printf("%-15s %-10s %-20s %-20s %-15s %-10s\n",
+                        (user.getDni() != null ? user.getDni() : " "),
+                        (user.getName() != null ? user.getName() : " "),
+                        (user.getSurnames() != null ? user.getSurnames() : " "),
+                        (user.getEmail() != null ? user.getEmail() : " "),
+                        (user.getPhone() != null ? user.getPhone() : " "),
+                        (user.getBirthDate() != null ? user.getBirthDate() : ""));
+        }
     }
     private static void obtains(){
         GetUsersUseCase getUsersUseCase=new GetUsersUseCase(new UserDataRepository(new UserFileLocalDataSource()));
