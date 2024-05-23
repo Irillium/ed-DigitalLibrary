@@ -20,11 +20,13 @@ public class UserDataRepository implements UserRepository {
     @Override
     public void save(User user) {
         userFileLocalDataSource.save(user);
+        userMemLocalDataSource.save(user);
     }
 
     @Override
     public void delete(String dni) {
         userFileLocalDataSource.delete(dni);
+        userMemLocalDataSource.delete(dni);
     }
 
     @Override
@@ -33,6 +35,9 @@ public class UserDataRepository implements UserRepository {
         if(usuario != null){
             userFileLocalDataSource.delete(dni);
             userFileLocalDataSource.save(user);
+
+            userMemLocalDataSource.delete(dni);
+            userMemLocalDataSource.save(user);
         }
         else{
             System.out.println("No existe el usuario");
