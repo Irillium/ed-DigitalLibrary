@@ -1,11 +1,12 @@
 package com.iesam.digitallibrary.features.user.domain;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface UserRepository {
     void save(User user);
     void delete(String dni);
     void modify(String dni, User user);
-    ArrayList<User> obtains();
+    List<User> obtains();
     User obtain(String dni);
 }

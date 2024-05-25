@@ -1,6 +1,6 @@
 package com.iesam.digitallibrary.features.user.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GetUsersUseCase {
     private UserRepository userRepository;
@@ -8,7 +8,7 @@ public class GetUsersUseCase {
     public GetUsersUseCase(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public ArrayList<User> execute(){
+    public List<User> execute(){
         return userRepository.obtains();
     }
 }

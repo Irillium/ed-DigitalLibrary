@@ -14,13 +14,14 @@ public class DigitalResourcePresentation {
             System.out.println("----------------------------------------");
             System.out.println("\t[1] LIBROS DIGITALES");
             System.out.println("\t[0] Salir");
-            System.out.println("-----------------------------------------------");
+            System.out.println("----------------------------------------");
             select=scan.nextInt();
             switch (select){
-                case 0:
+                case 1:
                     DigitalBookPresentation.digitalBookMenu();
                     break;
-                case 1:
+                case 0:
+                    System.out.println("Saliendo del menu...");
                     break;
                 default:
                     System.out.println("Esa opción no existe");
