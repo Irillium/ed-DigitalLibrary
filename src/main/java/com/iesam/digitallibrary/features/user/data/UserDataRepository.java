@@ -40,7 +40,7 @@ public class UserDataRepository implements UserRepository {
     }
 
     @Override
-    public ArrayList<User> obtains() {
+    public List<User> obtains() {
         List<User> usersFile= userFileLocalDataSource.findAll();
         List<User> usersMem= userMemLocalDataSource.findAll();
         if(usersMem.size()==usersFile.size()){
@@ -57,7 +57,7 @@ public class UserDataRepository implements UserRepository {
                userMemLocalDataSource.save(u);
            }
             List<User> newUsersMem= userMemLocalDataSource.findAll();
-           return (ArrayList<User>) newUsersMem;
+           return  newUsersMem;
         }
         return null;
     }

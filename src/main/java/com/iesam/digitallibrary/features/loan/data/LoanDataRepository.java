@@ -1,11 +1,7 @@
 package com.iesam.digitallibrary.features.loan.data;
-
-import com.iesam.digitallibrary.features.digitalResource.domain.DigitalResource;
 import com.iesam.digitallibrary.features.loan.data.local.LoanData;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
 import com.iesam.digitallibrary.features.loan.domain.LoanRepository;
-import com.iesam.digitallibrary.features.user.domain.User;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 

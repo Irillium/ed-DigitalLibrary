@@ -1,6 +1,7 @@
 package com.iesam.digitallibrary.features;
 
 import com.iesam.digitallibrary.features.digitalResource.digitalBook.presentation.DigitalBookPresentation;
+import com.iesam.digitallibrary.features.digitalResource.presentation.DigitalResourcePresentation;
 import com.iesam.digitallibrary.features.loan.presentation.LoanPresentation;
 import com.iesam.digitallibrary.features.user.presentation.UserPresentation;
 
@@ -30,7 +31,7 @@ public class Main {
                    UserPresentation.userMenu();
                    break;
                case 2:
-                   DigitalBookPresentation.digitalBookMenu();
+                   DigitalResourcePresentation.digitalResourceMenu();
                    break;
                case 3:
                    LoanPresentation.loanMenu();

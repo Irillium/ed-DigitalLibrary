@@ -1,6 +1,7 @@
 package com.iesam.digitallibrary.features.loan.data.local;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.iesam.digitallibrary.features.loan.domain.Loan;
 
@@ -9,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +20,10 @@ public class LoanFileLocalDataSource implements LoanData {
 
     private String nameFile = "loan.txt";
 
-    private Gson gson = new Gson();
+    Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .create();
+
 
     private final Type typeList = new TypeToken<ArrayList<Loan>>() {
     }.getType();
