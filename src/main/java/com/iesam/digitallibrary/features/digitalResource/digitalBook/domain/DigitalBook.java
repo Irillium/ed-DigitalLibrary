@@ -10,8 +10,8 @@ public class DigitalBook extends DigitalResource {
     public final String synopsis;
     public final String pageCount;
 
-    public DigitalBook(String isbn, String author,String name, String publisher, String genre, String synopsis, String pageCount) {
-        super(name);
+    public DigitalBook(String type,String isbn, String author,String name, String publisher, String genre, String synopsis, String pageCount) {
+        super(name,type);
         this.isbn = isbn;
         this.author = author;
         this.publisher = publisher;

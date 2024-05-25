@@ -25,38 +25,22 @@ public class StubLoanDataRepository implements LoanRepository {
     }
 
     @Override
-    public ArrayList<Loan> obtainUnfinisheds() {
-        ArrayList<Loan> loans =(ArrayList<Loan>)loanData.findAll();
-        ArrayList<Loan> loansUnfinished = new ArrayList<>();
-        for(Loan l:loans){
-            if(l.getReturnDate()==null){
-                loansUnfinished.add(l);
-            }
-        }
-        return loansUnfinished;
+    public ArrayList<Loan> obtain() {
+        return null;
     }
 
-    @Override
-    public ArrayList<Loan> obtainCompleteds() {
-        ArrayList<Loan> loans =new ArrayList<>();
-
-        ArrayList<Loan> loansUnfinished = new ArrayList<>();
-        for(Loan l:loans){
-            if(l.getReturnDate()!=null){
-                loansUnfinished.add(l);
-            }
-        }
-        return loansUnfinished;
-    }
 
     @Override
-    public void returned(String isbn) {
+    public void returned(String isbn,LocalDate today) {
         Loan loan=loanData.findById(isbn);
+
         if(loan==null){
             System.out.println("El prestamo no existe");
         }
         else{
-            loan.setReturnDate();
+            Loan loan1= new Loan(loan.getUser(),loan.getDigitalResource(),loan.getLoanDate(),loan.getDeadline(),today);
+            loanData.delete(isbn);
+            loanData.save(loan1);
             System.out.println("Prestamo devuelto");
         }
 
